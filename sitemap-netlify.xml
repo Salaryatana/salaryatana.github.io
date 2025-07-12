@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://salaryatana.netlify.app/</loc>
+    <lastmod>2025-07-12</lastmod>
+    <priority>1.00</priority>
+  </url>
+
+  <!-- အခြားစာမျက်နှာတွေ အတွက် ဒီလိုထပ်ထည့်ပါ -->
+
+  <!-- ဥပမာ -->
+  <!--
+  <url>
+    <loc>https://salaryatana.netlify.app/about</loc>
+    <lastmod>2025-07-12</lastmod>
+    <priority>0.80</priority>
+  </url>
+  -->
+
+</urlset>
