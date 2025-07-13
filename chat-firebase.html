@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Salaryatana Group Chat</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+    #chat-box {
+      border: 1px solid #ccc;
+      height: 300px;
+      overflow-y: scroll;
+      padding: 10px;
+      background: #fff;
+      margin-bottom: 10px;
+    }
+    input[type="text"] {
+      width: 70%;
+      padding: 8px;
+    }
+    button {
+      padding: 8px 12px;
+    }
+  </style>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDU8KyzG6P2zGYs4Pk02yz5SZhKa296m8s",
+      authDomain: "salaryatana-8b9f5.firebaseapp.com",
+      projectId: "salaryatana-8b9f5",
+      storageBucket: "salaryatana-8b9f5.firebasestorage.app",
+      messagingSenderId: "764193108668",
+      appId: "1:764193108668:web:ec9bec4c0e4891366f16b9",
+      measurementId: "G-0KN4Z83CNG"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const messagesRef = collection(db, "messages");
+
+    const form = document.getElementById("chat-form");
+    const input = document.getElementById("chat-input");
+    const box = document.getElementById("chat-box");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+      await addDoc(messagesRef, {
+        text,
+        time: Date.now()
+      });
+      input.value = "";
+    });
+
+    const q = query(messagesRef, orderBy("time"));
+    onSnapshot(q, (snapshot) => {
+      box.innerHTML = "";
+      snapshot.forEach((doc) => {
+        const msg = document.createElement("div");
+        msg.textContent = doc.data().text;
+        box.appendChild(msg);
+      });
+    });
+  </script>
+</head>
+<body>
+  <h2>💬 Salaryatana Group Chat</h2>
+  <div id="chat-box"></div>
+  <form id="chat-form">
+    <input id="chat-input" type="text" placeholder="Type your message..." />
+    <button type="submit">Send</button>
+  </form>
+</body>
+  </html>
