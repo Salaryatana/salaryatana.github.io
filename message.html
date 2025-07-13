@@ -69,3 +69,73 @@
       font-size: 0.8rem;
       color: #999;
     }
+    body.dark-mode .message .time {
+      color: #aaa;
+    }
+    input[type="text"] {
+      font-size: 1rem;
+      padding: 10px;
+      width: calc(50% - 12px);
+      margin: 0 6px 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    body.dark-mode input[type="text"] {
+      background-color: #2a2a2a;
+      color: #eee;
+      border: 1px solid #555;
+    }
+    button {
+      font-size: 1rem;
+      padding: 10px 15px;
+      margin: 0 6px 10px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: #8bc34a;
+      color: white;
+    }
+    button:hover {
+      background-color: #689f38;
+    }
+    #darkModeToggle {
+      background-color: #2196f3;
+    }
+    #darkModeToggle:hover {
+      background-color: #1769aa;
+    }
+    #clearBtn {
+      background-color: #e53935;
+    }
+    #clearBtn:hover {
+      background-color: #ab000d;
+    }
+    .delete-btn {
+      background-color: transparent;
+      border: none;
+      color: #e53935;
+      cursor: pointer;
+      margin-left: 10px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navigation Menu -->
+  <nav>
+    <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
+    <a href="book.html">📘 စာအုပ်</a>
+    <a href="message.html"><strong>💬 စာပို့ရန်</strong></a>
+    <a href="about.html">ℹ️ အကြောင်း</a>
+  </nav>
+
+  <h1>💬 Group Chat | Salaryatana</h1>
+
+  <div id="messages"></div>
+
+  <input type="text" id="nameInput" placeholder="နာမည် (အဖွဲ့ဝင်)" />
+  <input type="text" id="messageInput" placeholder="စာသားရေးပါ..." />
+  <button onclick="sendMessage()">ပို့မယ်</button>
+  <button id="darkModeToggle" onclick="toggleDarkMode()">🌙 Dark Mode ပြောင်းရန်</button>
+  <button id="clearBtn" onclick="clearMessages()" title="Admin Only -
