@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="my">
 <head>
   <meta charset="UTF-8" />
-  <title>✉️ စာပို့ရန် | Salaryatana</title>
+  <title>💬 စာပို့ရန် | Salaryatana</title>
 
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
@@ -11,70 +11,126 @@
   <style>
     body {
       font-family: "Myanmar Text", sans-serif;
+      max-width: 600px;
+      margin: auto;
       padding: 20px;
       background-color: #fefbe9;
       color: #5d4037;
-      max-width: 600px;
-      margin: auto;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark-mode {
+      background-color: #121212;
+      color: #eee;
+    }
+    nav {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #5d4037;
+      font-weight: bold;
+    }
+    body.dark-mode nav a {
+      color: #f1c40f;
     }
     h1 {
       text-align: center;
-      color: #6d4c41;
     }
     #messages {
       border: 1px solid #ccc;
-      padding: 10px;
-      height: 300px;
-      overflow-y: scroll;
       background: #fff;
+      height: 320px;
+      overflow-y: auto;
+      padding: 10px;
       margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      color: #333;
     }
-    input, button {
+    body.dark-mode #messages {
+      background: #1e1e1e;
+      color: #ddd;
+    }
+    .message {
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #ddd;
+    }
+    body.dark-mode .message {
+      border-bottom: 1px solid #444;
+    }
+    .message .name {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    .message .time {
+      font-size: 0.8rem;
+      color: #999;
+    }
+    body.dark-mode .message .time {
+      color: #aaa;
+    }
+    input[type="text"] {
       font-size: 1rem;
       padding: 10px;
-      margin: 5px 0;
+      width: calc(50% - 12px);
+      margin: 0 6px 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
-    input {
-      width: 80%;
+    body.dark-mode input[type="text"] {
+      background-color: #2a2a2a;
+      color: #eee;
+      border: 1px solid #555;
     }
     button {
-      width: 18%;
+      font-size: 1rem;
+      padding: 10px 15px;
+      margin: 0 6px 10px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
       background-color: #8bc34a;
       color: white;
-      border: none;
-      cursor: pointer;
     }
     button:hover {
       background-color: #689f38;
     }
-    .back-link {
-      margin-top: 30px;
-      text-align: center;
+    #darkModeToggle {
+      background-color: #2196f3;
     }
-    .back-link a {
-      color: #5d4037;
-      text-decoration: none;
-      font-weight: bold;
+    #darkModeToggle:hover {
+      background-color: #1769aa;
     }
-    .back-link a:hover {
-      text-decoration: underline;
+    #clearBtn {
+      background-color: #e53935;
+    }
+    #clearBtn:hover {
+      background-color: #ab000d;
     }
   </style>
 </head>
 <body>
 
-  <h1>✉️ စာပို့ရန်</h1>
+  <!-- ✅ Navigation Menu -->
+  <nav>
+    <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
+    <a href="book.html">📘 စာအုပ်</a>
+    <a href="message.html"><strong>💬 စာပို့ရန်</strong></a>
+    <a href="about.html">ℹ️ အကြောင်း</a>
+  </nav>
+
+  <h1>💬 Group Chat | Salaryatana</h1>
 
   <div id="messages"></div>
 
-  <input type="text" id="nameInput" placeholder="နာမည်" />
+  <input type="text" id="nameInput" placeholder="နာမည် (အဖွဲ့ဝင်)" />
   <input type="text" id="messageInput" placeholder="စာသားရေးပါ..." />
   <button onclick="sendMessage()">ပို့မယ်</button>
-
-  <!-- 🔙 Back to Home -->
-  <div class="back-link">
-    <p><a href="index.html">🔙 ပင်မစာမျက်နှာသို့ ပြန်သွားရန်</a></p>
-  </div>
+  <button id="darkModeToggle" onclick="toggleDarkMode()">🌙 Dark Mode ပြောင်းရန်</button>
+  <button id="clearBtn" onclick="clearMessages()" title="Admin Only - စာတိုက်ဖျက်မယ်">🧹 စာအပေါင်း ဖျက်မယ်</button>
 
   <script>
     const firebaseConfig = {
@@ -92,21 +148,86 @@
     const db = firebase.database();
     const messagesRef = db.ref("messages");
 
+    const ADMIN_PASSWORD = "salaryatana_admin_secret";
+
     function sendMessage() {
       const name = document.getElementById("nameInput").value.trim();
       const text = document.getElementById("messageInput").value.trim();
-      if (name && text) {
-        messagesRef.push({ name, text });
-        document.getElementById("messageInput").value = "";
+      if (!name) {
+        alert("နာမည်ထည့်ပါ");
+        return;
       }
+      if (!text) {
+        alert("စာသားရေးပါ");
+        return;
+      }
+      const timestamp = Date.now();
+      messagesRef.push({ name, text, timestamp });
+      document.getElementById("messageInput").value = "";
     }
 
+    function formatTimestamp(ts) {
+      const d = new Date(ts);
+      return d.toLocaleString('my-MM', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+        timeZone: 'Asia/Yangon'
+      });
+    }
+
+    const messagesDiv = document.getElementById("messages");
     messagesRef.on("child_added", (data) => {
       const msg = data.val();
       const div = document.createElement("div");
-      div.innerHTML = `<strong>${msg.name}:</strong> ${msg.text}`;
-      document.getElementById("messages").appendChild(div);
+      div.classList.add("message");
+      div.innerHTML = `<span class="name">${escapeHtml(msg.name)}</span> <span class="time">[${formatTimestamp(msg.timestamp)}]</span><br>${escapeHtml(msg.text)}`;
+      messagesDiv.appendChild(div);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
     });
+
+    function clearMessages() {
+      const pass = prompt("Admin password ထည့်ပါ။");
+      if (pass === ADMIN_PASSWORD) {
+        if (confirm("Messages အားလုံးကို ဖျက်မှာ သေချာပါသလား?")) {
+          messagesRef.remove();
+          messagesDiv.innerHTML = "";
+          alert("Messages ဖျက်ပြီးပါပြီ။");
+        }
+      } else {
+        alert("Password မှားနေပါသည်။");
+      }
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("darkMode", "enabled");
+      } else {
+        localStorage.setItem("darkMode", "disabled");
+      }
+    }
+
+    window.onload = () => {
+      if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+      }
+    };
+
+    function escapeHtml(text) {
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+      return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
   </script>
 
 </body>
