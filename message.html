@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>✉️ စာပို့ရန် | Salaryatana</title>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+
+  <style>
+    body {
+      font-family: "Myanmar Text", sans-serif;
+      padding: 20px;
+      background-color: #fefbe9;
+      color: #5d4037;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #6d4c41;
+    }
+    #messages {
+      border: 1px solid #ccc;
+      padding: 10px;
+      height: 300px;
+      overflow-y: scroll;
+      background: #fff;
+      margin-bottom: 20px;
+    }
+    input, button {
+      font-size: 1rem;
+      padding: 10px;
+      margin: 5px 0;
+    }
+    input {
+      width: 80%;
+    }
+    button {
+      width: 18%;
+      background-color: #8bc34a;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #689f38;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>✉️ စာပို့ရန်</h1>
+
+  <div id="messages"></div>
+
+  <input type="text" id="nameInput" placeholder="နာမည်" />
+  <input type="text" id="messageInput" placeholder="စာသားရေးပါ..." />
+  <button onclick="sendMessage()">ပို့မယ်</button>
+
+  <script>
+    // ✅ Firebase config (မင်းပေးထားတဲ့ Project)
+    const firebaseConfig = {
+      apiKey: "AIzaSyDU8KyzG6P2zGYs4Pk02yz5SZhKa296m8s",
+      authDomain: "salaryatana-8b9f5.firebaseapp.com",
+      projectId: "salaryatana-8b9f5",
+      storageBucket: "salaryatana-8b9f5.appspot.com",
+      messagingSenderId: "764193108668",
+      appId: "1:764193108668:web:ec9bec4c0e4891366f16b9",
+      measurementId: "G-0KN4Z83CNG",
+      databaseURL: "https://salaryatana-8b9f5-default-rtdb.firebaseio.com"
+    };
+
+    // ✅ Firebase Initialize
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const messagesRef = db.ref("messages");
+
+    // ✅ Send message
+    function sendMessage() {
+      const name = document.getElementById("nameInput").value.trim();
+      const text = document.getElementById("messageInput").value.trim();
+      if (name && text) {
+        messagesRef.push({ name, text });
+        document.getElementById("messageInput").value = "";
+      }
+    }
+
+    // ✅ Display messages
+    messagesRef.on("child_added", (data) => {
+      const msg = data.val();
+      const div = document.createElement("div");
+      div.innerHTML = `<strong>${msg.name}:</strong> ${msg.text}`;
+      document.getElementById("messages").appendChild(div);
+    });
+  </script>
+
+</body>
+</html>
