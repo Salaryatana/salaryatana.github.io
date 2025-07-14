@@ -34,6 +34,7 @@
       margin: 0;  
       padding: 20px;  
       text-align: center;  
+      position: relative;
     }  
     h1 {  
       margin-top: 10px;  
@@ -64,10 +65,16 @@
       color: #d4a017;  
     }
     nav {
+      margin-top: 40px;
       margin-bottom: 20px;
     }
     nav a {
       margin: 0 10px;
+    }
+    .dark-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
     }
     body.dark-mode {
       background-color: #1e1e1e;
@@ -83,18 +90,8 @@
 </head>  
 <body>  
 
-  <!-- Navigation Menu -->
-<nav>  
-  <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>  
-  <a href="book.html">📘 စာအုပ်</a>  
-  <a href="chat-json.html">🤖 မေးခွန်းမေး</a>  
-  <a href="history.html">🕘 မှတ်တမ်း</a>  
-  <a href="message.html">✉️ စာပို့ရန်</a>  
-  <a href="about.html">ℹ️ အကြောင်း</a>  
-</nav>
-
-  <!-- Dark Mode Toggle Button -->
-  <button onclick="toggleDarkMode()">🌙 အမည်းနဲ့အဖြူ Mode ပြောင်းရန်</button>
+  <!-- Dark Mode Toggle Button (Right Top Corner) -->
+  <button onclick="toggleDarkMode()" class="dark-toggle">🌙 အမည်းနဲ့အဖြူ Mode ပြောင်းရန်</button>
 
   <!-- Title -->  
   <h1>Salaryatana | သဠာယတန</h1>  
@@ -126,6 +123,16 @@
   
   <!-- ဒုတိယဓာတ်ပုံ -->  
   <img src="https://salaryatana.github.io/SEO/salaryatana.jpg" alt="Salaryatana Image 2" />  
+
+  <!-- Navigation Menu (Moved Below Content) -->
+  <nav>  
+    <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>  
+    <a href="book.html">📘 စာအုပ်</a>  
+    <a href="chat-json.html">🤖 မေးခွန်းမေး</a>  
+    <a href="history.html">🕘 မှတ်တမ်း</a>  
+    <a href="message.html">✉️ စာပို့ရန်</a>  
+    <a href="about.html">ℹ️ အကြောင်း</a>  
+  </nav>
   
   <!-- Footer -->  
   <footer>  
