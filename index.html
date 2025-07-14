@@ -25,7 +25,6 @@
   <meta name="twitter:description" content="salaryatana - Mindfulness in Theory and Practice | စာနှင့်လက်တွေ့နည်းကျ တရားရှုမှတ်ခြင်း | Mindfulness with salaryatana" />  
   <meta name="twitter:image" content="https://salaryatana.github.io/SEO/salaryatana.jpg" />
 
-  <!-- 🌐 Styles Remain Same -->
   <style>    
     body {    
       font-family: "Myanmar Text", sans-serif;    
@@ -35,7 +34,7 @@
       padding: 20px;    
       text-align: center;    
       position: relative;
-      padding-bottom: 70px; /* fixed nav space */
+      padding-bottom: 70px;
     }    
     h1 {    
       margin-top: 10px;    
@@ -83,12 +82,23 @@
     nav a:hover {
       text-decoration: underline;
     }
+
+    /* ✅ Dark Mode Styling */
     .dark-toggle {  
-      position: absolute;  
+      position: fixed;  
       top: 20px;  
       right: 20px;  
-      z-index: 1000;
+      z-index: 1001;
+      background: rgba(128,128,128,0.4); /* transparent gray background */
+      color: #fff;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      backdrop-filter: blur(6px);
     }  
+
     body.dark-mode {  
       background-color: #1e1e1e;  
       color: #f9f9f9;  
@@ -107,21 +117,17 @@
 </head>    
 <body>    
 
-  <!-- Dark Mode Toggle Button (Right Top Corner) -->
+  <!-- Dark Mode Toggle Button -->
   <button onclick="toggleDarkMode()" class="dark-toggle">🌙 အမည်းနဲ့အဖြူ Mode ပြောင်းရန်</button>
 
-  <!-- Title -->
   <h1>Salaryatana | သဠာယတန</h1>
 
-  <!-- ပထမဓာတ်ပုံ -->
   <img src="https://salaryatana.github.io/SEO/salaryatana1.jpg" alt="Salaryatana Image 1" />
 
-  <!-- Description Texts -->
   <p>စာနှင့်လက်တွေ့နည်းကျ တရားရှုမှတ်ခြင်း</p>    
   <p>Mindfulness in Theory and Practice</p>    
   <p>Mindfulness with Salaryatana</p>
 
-  <!-- Notion Links -->
   <p>
     <a href="#">
       တရားရှုမှတ်နည်း စာအုပ်ဖတ်ရန်
@@ -138,15 +144,12 @@
     </a>
   </p>
 
-  <!-- ဒုတိယဓာတ်ပုံ -->
   <img src="https://salaryatana.github.io/SEO/salaryatana.jpg" alt="Salaryatana Image 2" />
 
-  <!-- Footer -->
   <footer>
     <p>ဆက်သွယ်ရန် - ၀၉ ၈၈၄ ၆၆၄ ၆၄၇ / 09 884 664 647</p>
   </footer>
 
-  <!-- Fixed Bottom Navigation -->
   <nav>
     <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>    
     <a href="book.html">📘 စာအုပ်</a>    
@@ -156,7 +159,6 @@
     <a href="about.html">ℹ️ အကြောင်း</a>    
   </nav>
 
-  <!-- JavaScript -->
   <script>
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
