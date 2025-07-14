@@ -86,21 +86,20 @@
     /* ✅ Dark Mode Styling */
     .dark-toggle {  
       position: fixed;  
-      top: 20px;  
-      right: 20px;  
+      top: 0;  
+      right: 0;  
       z-index: 1001;
-      background: rgba(128,128,128,0.4); /* transparent gray background */
+      background: transparent; /* ✅ Fully transparent background */
       color: #f1c40f; /* ✅ Yellow text */
-      padding: 6px 12px;
+      padding: 8px 14px;
       border: none;
-      border-radius: 6px;
+      border-radius: 0;
       cursor: pointer;
       font-weight: bold;
-      backdrop-filter: blur(6px);
     }  
 
     body.dark-mode {  
-      background-color: #1e1e1e;  /* ✅ Normal dark mode background */
+      background-color: #1e1e1e;  
       color: #f9f9f9;  
     }  
     body.dark-mode a {  
