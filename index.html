@@ -9,20 +9,20 @@
 
   <!-- ✅ SEO Meta Tags -->
   <title>salaryatana | သဠာယတန</title>    
-  <meta name="description" content="salaryatana - Mindfulness in Theory and Practice | စာနှင့်လက်တွေ့နည်းကျ တရားရှုမှတ်ခြင်း | Mindfulness with Salaryatana" />  
+  <meta name="description" content="salaryatana - Mindfulness in Theory and Practice | စာနှင့်လက်တွေ့နည်းကျ တရားရှုမှတ်ခြင်း | Mindfulness with salaryatana" />  
   <meta name="robots" content="index, follow" />
 
   <!-- ✅ Open Graph Meta Tags -->
-  <meta property="og:title" content="Salaryatana | သဠာယတန" />  
-  <meta property="og:description" content="Salaryatana - Mindfulness in Theory and Practice | စာနှင့်လက်တွေ့နည်းကျ တရားရှုမှတ်ခြင်း | Mindfulness with Salaryatana" />  
+  <meta property="og:title" content="salaryatana | သဠာယတန" />  
+  <meta property="og:description" content="salaryatana - Mindfulness in Theory and Practice | စာနှင့်လက်တွေ့နည်းကျ တရားရှုမှတ်ခြင်း | Mindfulness with salaryatana" />  
   <meta property="og:image" content="https://salaryatana.github.io/SEO/salaryatana.jpg" />  
   <meta property="og:type" content="website" />  
   <meta property="og:url" content="https://salaryatana.github.io/SEO/" />
 
   <!-- ✅ Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />  
-  <meta name="twitter:title" content="Salaryatana | သဠာယတန" />  
-  <meta name="twitter:description" content="Salaryatana - Mindfulness in Theory and Practice | စာနှင့်လက်တွေ့နည်းကျ တရားရှုမှတ်ခြင်း | Mindfulness with Salaryatana" />  
+  <meta name="twitter:title" content="salaryatana | သဠာယတန" />  
+  <meta name="twitter:description" content="salaryatana - Mindfulness in Theory and Practice | စာနှင့်လက်တွေ့နည်းကျ တရားရှုမှတ်ခြင်း | Mindfulness with salaryatana" />  
   <meta name="twitter:image" content="https://salaryatana.github.io/SEO/salaryatana.jpg" />
 
   <!-- 🌐 Styles Remain Same -->
@@ -34,10 +34,11 @@
       margin: 0;    
       padding: 20px;    
       text-align: center;    
-      position: relative;  
+      position: relative;
+      padding-bottom: 70px; /* fixed nav space */
     }    
     h1 {    
-      margin-top: 60px; /* အပေါ်ကနေ နည်းနည်းအောက်ရောက်အောင် ပြောင်းထားတယ် */
+      margin-top: 10px;    
       font-size: 2rem;    
       color: #d4a017;    
     }    
@@ -65,14 +66,25 @@
       color: #d4a017;    
     }  
     nav {  
-      margin-top: 40px;  
-      margin-bottom: 20px;  
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-top: 1px solid #ccc;
+      padding: 10px 0;
+      z-index: 999;
     }  
     nav a {  
       margin: 0 10px;  
+      color: #d4a017;
+      font-weight: bold;
     }  
+    nav a:hover {
+      text-decoration: underline;
+    }
     .dark-toggle {  
-      position: fixed;  
+      position: absolute;  
       top: 20px;  
       right: 20px;  
       z-index: 1000;
@@ -87,53 +99,69 @@
     body.dark-mode footer {  
       color: #f9f9f9;  
     }  
+    body.dark-mode nav {
+      background: #1e1e1e;
+      border-top: 1px solid #444;
+    }
   </style>    
 </head>    
 <body>    
 
-  <!-- Dark Mode Toggle Button (Fixed) -->
+  <!-- Dark Mode Toggle Button (Right Top Corner) -->
   <button onclick="toggleDarkMode()" class="dark-toggle">🌙 အမည်းနဲ့အဖြူ Mode ပြောင်းရန်</button>
 
-  <!-- Title -->    
-  <h1>Salaryatana | သဠာယတန</h1>    
+  <!-- Title -->
+  <h1>Salaryatana | သဠာယတန</h1>
 
-  <!-- ပထမဓာတ်ပုံ -->    
-  <img src="https://salaryatana.github.io/SEO/salaryatana1.jpg" alt="Salaryatana Image 1" />    
+  <!-- ပထမဓာတ်ပုံ -->
+  <img src="https://salaryatana.github.io/SEO/salaryatana1.jpg" alt="Salaryatana Image 1" />
 
-  <!-- Description Texts -->    
+  <!-- Description Texts -->
   <p>စာနှင့်လက်တွေ့နည်းကျ တရားရှုမှတ်ခြင်း</p>    
   <p>Mindfulness in Theory and Practice</p>    
-  <p>Mindfulness with Salaryatana</p>    
+  <p>Mindfulness with Salaryatana</p>
 
-  <!-- Notion Link (Updated) -->    
-  <p><a href="#">တရားရှုမှတ်နည်း စာအုပ်ဖတ်ရန်</a></p>    
-  <p><a href="https://candy-mahogany-70a.notion.site/Version-3-21acaaa9744980d9915dfa384437c7e7" target="_blank" rel="noopener noreferrer">နောက်ဆုံးပြုပြင်ထားသည့်ပုံစံ ဖတ်ရန်နှိပ်ပါ</a></p>    
-  <p><a href="https://candy-mahogany-70a.notion.site/salaryatana-219caaa974498080979ed2f7db6f812c" target="_blank" rel="noopener noreferrer">ရေးသားသည့် ပုံစံများအားလုံး ဖတ်ရန်နှိပ်ပါ</a></p>    
+  <!-- Notion Links -->
+  <p>
+    <a href="#">
+      တရားရှုမှတ်နည်း စာအုပ်ဖတ်ရန်
+    </a>
+  </p>
+  <p>
+    <a href="https://candy-mahogany-70a.notion.site/Version-3-21acaaa9744980d9915dfa384437c7e7" target="_blank" rel="noopener noreferrer">
+      နောက်ဆုံးပြုပြင်ထားသည့်ပုံစံ ဖတ်ရန်နှိပ်ပါ
+    </a>
+  </p>
+  <p>
+    <a href="https://candy-mahogany-70a.notion.site/salaryatana-219caaa974498080979ed2f7db6f812c" target="_blank" rel="noopener noreferrer">
+      ရေးသားသည့် ပုံစံများအားလုံး ဖတ်ရန်နှိပ်ပါ
+    </a>
+  </p>
 
-  <!-- ဒုတိယဓာတ်ပုံ -->    
-  <img src="https://salaryatana.github.io/SEO/salaryatana.jpg" alt="Salaryatana Image 2" />    
+  <!-- ဒုတိယဓာတ်ပုံ -->
+  <img src="https://salaryatana.github.io/SEO/salaryatana.jpg" alt="Salaryatana Image 2" />
 
-  <!-- Navigation Menu (Below Content) -->    
-  <nav>    
+  <!-- Footer -->
+  <footer>
+    <p>ဆက်သွယ်ရန် - ၀၉ ၈၈၄ ၆၆၄ ၆၄၇ / 09 884 664 647</p>
+  </footer>
+
+  <!-- Fixed Bottom Navigation -->
+  <nav>
     <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>    
     <a href="book.html">📘 စာအုပ်</a>    
     <a href="chat-json.html">🤖 မေးခွန်းမေး</a>    
     <a href="history.html">🕘 မှတ်တမ်း</a>    
     <a href="message.html">✉️ စာပို့ရန်</a>    
     <a href="about.html">ℹ️ အကြောင်း</a>    
-  </nav>    
+  </nav>
 
-  <!-- Footer -->    
-  <footer>    
-    <p>ဆက်သွယ်ရန် - ၀၉ ၈၈၄ ၆၆၄ ၆၄၇ / 09 884 664 647</p>    
-  </footer>    
+  <!-- JavaScript -->
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
 
-  <!-- JavaScript for Dark Mode -->    
-  <script>  
-    function toggleDarkMode() {  
-      document.body.classList.toggle('dark-mode');  
-    }  
-  </script>    
-
-</body>    
+</body>
 </html>
