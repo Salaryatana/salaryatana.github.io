@@ -81,15 +81,13 @@
 </head>
 <body>
 
-  <div id="header-container"></div>
+<link rel="stylesheet" href="theme-darkmode.css" />
+</head>
+<body>
 
-<script>
-  fetch("header-darkmode.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("header-container").innerHTML = data;
-    });
-</script>
+  <!-- ✅ Dark Mode Toggle Button -->
+  <button onclick="toggleDarkMode()" class="dark-toggle"> အဖြူအမဲ </button>
+
   <h1>Salaryatana | သဠာယတန</h1>
   <img src="https://salaryatana.github.io/SEO/salaryatana1.jpg" alt="Salaryatana Image 1" />
   <p>စာနှင့်လက်တွေ့နည်းကျ တရားရှုမှတ်ခြင်း</p>
@@ -123,7 +121,7 @@
     <a href="about.html">ℹ️ အကြောင်း</a>
   </nav>
 
-   
+ 
+   <script src="theme-darkmode.js"></script>
 </body>
 </html>
-
