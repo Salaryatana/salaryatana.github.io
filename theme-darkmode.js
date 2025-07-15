@@ -4,19 +4,13 @@ function toggleDarkMode() {
   localStorage.setItem("darkMode", isDark);
 
   const btn = document.querySelector(".dark-toggle");
-  btn.textContent = isDark ? "🌙" : "☀️";
+  btn.textContent = isDark ? "☀️" : "🌙";
 }
 
-// ✅ Restore previous mode on load
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const isDark = localStorage.getItem("darkMode") === "true";
-
-  if (isDark) {
-    document.body.classList.add("dark");
-  }
+  if (isDark) document.body.classList.add("dark");
 
   const btn = document.querySelector(".dark-toggle");
-  if (btn) {
-    btn.textContent = isDark ? "🌙" : "☀️";
-  }
+  if (btn) btn.textContent = isDark ? "☀️" : "🌙";
 });
