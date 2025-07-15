@@ -1,8 +1,16 @@
+/* ✅ Default (White) Mode */
 body {
   font-family: "Myanmar Text", sans-serif;
+  background-color: #ffffff;
+  color: #d4a017;
   transition: background-color 0.3s, color 0.3s;
 }
 
+a {
+  color: #d4a017;
+}
+
+/* ✅ Dark Mode */
 body.dark {
   background-color: #1e1e1e;
   color: #d4a017;
@@ -25,6 +33,7 @@ body.dark footer {
   color: #d4a017;
 }
 
+/* ✅ Dark mode toggle button */
 .dark-toggle {
   position: fixed;
   top: 10px;
@@ -34,4 +43,4 @@ body.dark footer {
   border: none;
   cursor: pointer;
   z-index: 1000;
-    }
+}
