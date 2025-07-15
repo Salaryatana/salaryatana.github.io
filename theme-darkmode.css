@@ -1,35 +1,28 @@
-.category-bar {
-  background-color: #fff;
+body.dark {
+  background-color: #000;
   color: #d4a017;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-
-  /* ✅ Sticky to bottom */
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  border-top: 1px solid #ccc;
 }
 
-.category-bar a {
-  text-decoration: none;
+body.dark a {
   color: #d4a017;
-  font-weight: bold;
-  font-size: 1rem;
 }
 
-/* ✅ Dark mode support */
-body.dark .category-bar {
-  background-color: #1a1a1a;
-  color: #d4a017;
+body.dark nav {
+  background-color: #000;
   border-color: #444;
 }
 
-body.dark .category-bar a {
+body.dark nav a {
+  color: #d4a017;
+}
+
+.dark-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
   color: #d4a017;
 }
