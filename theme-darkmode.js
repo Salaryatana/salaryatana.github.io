@@ -1,16 +1,5 @@
 function toggleDarkMode() {
-  const body = document.body;
-  const isDark = body.classList.toggle("dark");
-  localStorage.setItem("darkMode", isDark);
-
-  const btn = document.querySelector(".dark-toggle");
-  btn.textContent = isDark ? "☀️" : "🌙";
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  document.querySelector('.dark-toggle').textContent = isDark ? '🌞' : '🌙';
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const isDark = localStorage.getItem("darkMode") === "true";
-  if (isDark) document.body.classList.add("dark");
-
-  const btn = document.querySelector(".dark-toggle");
-  if (btn) btn.textContent = isDark ? "☀️" : "🌙";
-});
