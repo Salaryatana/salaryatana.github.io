@@ -1,11 +1,22 @@
 function toggleDarkMode() {
-  const isDark = document.body.classList.toggle("dark-mode");
-  localStorage.setItem("theme", isDark ? "dark" : "light");
+  document.body.classList.toggle("dark");
+  const isDark = document.body.classList.contains("dark");
+  localStorage.setItem("darkMode", isDark);
+
+  const btn = document.querySelector(".dark-toggle");
+  btn.textContent = isDark ? "🌙" : "☀️";
 }
 
+// ✅ On page load - restore mode
 window.addEventListener("DOMContentLoaded", () => {
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark-mode");
+  const isDark = localStorage.getItem("darkMode") === "true";
+  if (isDark) {
+    document.body.classList.add("dark");
+  }
+
+  // ✅ Update button icon
+  const btn = document.querySelector(".dark-toggle");
+  if (btn) {
+    btn.textContent = isDark ? "🌙" : "☀️";
   }
 });
