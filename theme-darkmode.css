@@ -1,23 +1,30 @@
 body {
+  font-family: "Myanmar Text", sans-serif;
   transition: background-color 0.3s, color 0.3s;
 }
+
 body.dark {
   background-color: #1e1e1e;
-  color: #ffffff;
+  color: #d4a017;
 }
+
 body.dark a {
-  color: #66ccff;
+  color: #d4a017;
 }
+
 body.dark nav {
-  background-color: #111;
+  background-color: #1a1a1a;
   border-color: #444;
 }
+
 body.dark nav a {
-  color: #66ccff;
+  color: #d4a017;
 }
+
 body.dark footer {
-  color: #999;
+  color: #d4a017;
 }
+
 .dark-toggle {
   position: fixed;
   top: 10px;
@@ -27,4 +34,4 @@ body.dark footer {
   border: none;
   cursor: pointer;
   z-index: 1000;
-}
+    }
