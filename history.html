@@ -8,7 +8,9 @@
   <meta name="keywords" content="Salaryatana, အကြောင်း, about, dhamma, mindfulness" />  
 
   <!-- ✅ Category bar CSS -->
-  <link rel="stylesheet" href="category-bar.css" />
+  <link rel="stylesheet" href="category-bar.css" />  
+  <!-- ✅ Dark mode CSS -->
+  <link rel="stylesheet" href="theme-darkmode.css" />  
 
   <style>  
     body {  
@@ -18,31 +20,61 @@
       padding: 1rem;  
       max-width: 700px;  
       margin: auto;  
+      transition: background-color 0.3s, color 0.3s;  
+    }  
+
+    /* Index ပုံစံ heading/subtitle ဗီဘီ */
+    h1 {  
+      text-align: center;  
+      font-size: 2rem;  
+      color: #d4a017;  
+      margin-bottom: 0.5rem;  
+    }  
+
+    p.subtitle {  
+      text-align: center;  
+      font-size: 1rem;  
+      color: #d4a017;  
+      margin-bottom: 1.5rem;  
+    }  
+
+    /* Dark mode body */
+    body.dark {  
+      background-color: #1e1e1e;  
+      color: #ddd;  
+    }  
+
+    /* Dark mode heading/subtitle */
+    body.dark h1,  
+    body.dark p.subtitle {  
+      color: #f5c34d;  /* a lighter gold */  
     }  
   </style>  
 </head>  
+
 <body>  
 
-<link rel="stylesheet" href="theme-darkmode.css" />  
+  <!-- ✅ Dark Mode Toggle Button -->  
+  <button onclick="toggleDarkMode()" class="dark-toggle">🌙 / ☀️</button>  
 
-<!-- ✅ Dark Mode Toggle Button -->  
-<button onclick="toggleDarkMode()" class="dark-toggle"> အဖြူအမဲ </button>
+  <h1>ℹ️ Salaryatana ၏အကြောင်း</h1>  
+  <p class="subtitle">open Dhamma platform အကြောင်းအရာစုစည်းခြင်း</p>  
 
-<h1>ℹ️ Salaryatana ၏အကြောင်း</h1>  
-<p>  
-  Salaryatana သည် ဒေသနာများ၊ တရားပေးချက်များ၊ သုတေသန၊ မေးခွန်းဖြေခြင်းများ စုစည်းသည့် open Dhamma platform တစ်ခုဖြစ်သည်။ အသုံးပြုသူများအနေဖြင့် မိမိတို့၏ စိတ်ပိုင်းဆိုင်ရာ တက်ကြွမှုအတွက် အသုံးချနိုင်သည်။  
-</p>  
+  <p>  
+    Salaryatana သည် ဒေသနာများ၊ တရားပေးချက်များ၊ သုတေသန၊ မေးခွန်းဖြေခြင်းများ စုစည်းသည့် open Dhamma platform တစ်ခုဖြစ်သည်။  
+    အသုံးပြုသူများအနေဖြင့် မိမိတို့၏ စိတ်ပိုင်းဆိုင်ရာ တက်ကြွမှုအတွက် အသုံးချနိုင်သည်။  
+  </p>  
 
-<!-- ✅ Category bar copied from index-style -->
-<nav class="category-bar">
-  <a href="index.html">🏠 ပင်မ</a>
-  <a href="book.html">📘 စာအုပ်</a>
-  <a href="chat-json.html">🤖 မေးမြန်းရန်</a>
-  <a href="history.html">🕘 မှတ်တမ်း</a>
-  <a href="message.html">✉️ စာပို့ရန်</a>
-  <a href="about.html">ℹ️ အကြောင်း</a>
-</nav>
+  <!-- ✅ Category bar copied & styled like index -->
+  <nav class="category-bar">
+    <a href="index.html" style="color:#d4a017;">🏠 ပင်မစာမျက်နှာ</a>
+    <a href="book.html"  style="color:#007bff;">📘 စာအုပ်</a>
+    <a href="chat-json.html" style="color:#6f42c1;">🤖 မေးမြန်းရန်</a>
+    <a href="history.html" style="color:#17a2b8;">🕘 မှတ်တမ်း</a>
+    <a href="message.html" style="color:#28a745;">✉️ စာပို့ရန်</a>
+    <a href="about.html" style="color:#6c757d;">ℹ️ အကြောင်း</a>
+  </nav>  
 
-<script src="theme-darkmode.js"></script>  
+  <script src="theme-darkmode.js"></script>  
 </body>  
 </html>
