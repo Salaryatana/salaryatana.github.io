@@ -81,8 +81,12 @@
 </head>
 <body>
 
-  <!-- ✅ Dark Mode Header Include -->
-  <div include-html="header-darkmode.html"></div>
+  <link rel="stylesheet" href="theme-darkmode.css" />
+</head>
+<body>
+
+  <!-- ✅ Dark Mode Toggle Button -->
+  <button onclick="toggleDarkMode()" class="dark-toggle"> အဖြူအမဲ </button>
 
   <h1>Salaryatana | သဠာယတန</h1>
   <img src="https://salaryatana.github.io/SEO/salaryatana1.jpg" alt="Salaryatana Image 1" />
@@ -117,28 +121,7 @@
     <a href="about.html">ℹ️ အကြောင်း</a>
   </nav>
 
-  <!-- ✅ Include header-html script -->
-  <script>
-    function includeHTML() {
-      const elements = document.querySelectorAll('[include-html]');
-      elements.forEach(el => {
-        const file = el.getAttribute('include-html');
-        fetch(file)
-          .then(response => {
-            if (response.ok) return response.text();
-            throw new Error('Failed to load');
-          })
-          .then(data => {
-            el.innerHTML = data;
-            el.removeAttribute('include-html');
-            includeHTML(); // recursive include if nested
-          })
-          .catch(err => {
-            el.innerHTML = "Include failed.";
-          });
-      });
-    }
-    includeHTML();
-  </script>
+   <script src="theme-darkmode.js"></script>
 </body>
 </html>
+
