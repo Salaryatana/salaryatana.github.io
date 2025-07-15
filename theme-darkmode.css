@@ -1,46 +1,35 @@
-/* ✅ Default (White) Mode */
-body {
-  font-family: "Myanmar Text", sans-serif;
-  background-color: #ffffff;
+.category-bar {
+  background-color: #fff;
   color: #d4a017;
-  transition: background-color 0.3s, color 0.3s;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+
+  /* ✅ Sticky to bottom */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  border-top: 1px solid #ccc;
 }
 
-a {
+.category-bar a {
+  text-decoration: none;
   color: #d4a017;
+  font-weight: bold;
+  font-size: 1rem;
 }
 
-/* ✅ Dark Mode */
-body.dark {
-  background-color: #1e1e1e;
-  color: #d4a017;
-}
-
-body.dark a {
-  color: #d4a017;
-}
-
-body.dark nav {
+/* ✅ Dark mode support */
+body.dark .category-bar {
   background-color: #1a1a1a;
+  color: #d4a017;
   border-color: #444;
 }
 
-body.dark nav a {
+body.dark .category-bar a {
   color: #d4a017;
-}
-
-body.dark footer {
-  color: #d4a017;
-}
-
-/* ✅ Dark mode toggle button */
-.dark-toggle {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  font-size: 1.5rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 1000;
 }
