@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>📘 စာအုပ် | Salaryatana</title>
 
+  <!-- ✅ External CSS & JS for Dark Mode -->
+  <link rel="stylesheet" href="theme-darkmode.css" />
+  <script src="theme-darkmode.js" defer></script>
+
   <style>
     body {
       font-family: "Myanmar Text", sans-serif;
@@ -50,33 +54,6 @@
     nav a:hover {
       text-decoration: underline;
     }
-
-    /* Dark Mode Styling */
-    .dark-toggle {
-      position: fixed;
-      top: 0;
-      right: 0;
-      z-index: 1001;
-      background: transparent;
-      color: #f1c40f;
-      padding: 8px 14px;
-      border: none;
-      border-radius: 0;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    body.dark-mode {
-      background-color: #1e1e1e;
-      color: #f9f9f9;
-    }
-    body.dark-mode a {
-      color: #f1c40f;
-    }
-    body.dark-mode nav {
-      background: #1e1e1e;
-      border-top: 1px solid #444;
-    }
   </style>
 </head>
 <body>
@@ -93,13 +70,6 @@
   <h1>📘 စာအုပ်</h1>
   <p>ဒီနေရာမှာ သင်ဖတ်လိုတဲ့စာအုပ်တွေ၊ သင်္ချာနည်းလမ်းတွေထည့်နိုင်ပါတယ်။</p>
 
-  <p><a href="index.html">🔙 ပင်မစာမျက်နှာသို့ ပြန်သွားရန်</a></p>
-
-  <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-    }
-  </script>
 
 </body>
 </html>
