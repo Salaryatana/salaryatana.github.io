@@ -1,9 +1,12 @@
+// theme-darkmode.js
 function toggleDarkMode() {
-  document.body.classList.toggle("dark");
-  localStorage.setItem("darkMode", document.body.classList.contains("dark"));
+  document.body.classList.toggle("dark-mode");
+  localStorage.setItem("darkMode", document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
 }
 
-// Restore dark mode if it was on previously
-if (localStorage.getItem("darkMode") === "true") {
-  document.body.classList.add("dark");
-}
+// Page load: restore mode
+window.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+  }
+});
