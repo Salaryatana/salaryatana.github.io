@@ -1,14 +1,29 @@
-:root {
-  --bg-color: white;
-  --text-color: black;
+/* theme-darkmode.css */
+.dark-toggle {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1001;
+  background: transparent;
+  color: #f1c40f;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+body.dark-mode {
+  background-color: #1e1e1e;
+  color: #f9f9f9;
 }
-
-body.darkmode {
-  --bg-color: #121212;
-  --text-color: #e0e0e0;
+body.dark-mode a {
+  color: #f1c40f;
+}
+body.dark-mode footer {
+  color: #f9f9f9;
+}
+body.dark-mode nav {
+  background: #1e1e1e;
+  border-top: 1px solid #444;
 }
