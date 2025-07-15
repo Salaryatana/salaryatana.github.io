@@ -1,30 +1,30 @@
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+body.dark {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+body.dark a {
+  color: #66ccff;
+}
+body.dark nav {
+  background-color: #111;
+  border-color: #444;
+}
+body.dark nav a {
+  color: #66ccff;
+}
+body.dark footer {
+  color: #999;
+}
 .dark-toggle {
   position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 1001;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
   background: transparent;
-  color: #f1c40f;
-  padding: 8px 14px;
   border: none;
   cursor: pointer;
-  font-weight: bold;
-}
-
-body.dark-mode {
-  background-color: #1e1e1e;
-  color: #f9f9f9;
-}
-
-body.dark-mode a {
-  color: #f1c40f;
-}
-
-body.dark-mode footer {
-  color: #f9f9f9;
-}
-
-body.dark-mode nav {
-  background: #1e1e1e;
-  border-top: 1px solid #444;
+  z-index: 1000;
 }
