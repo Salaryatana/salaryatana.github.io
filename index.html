@@ -20,10 +20,68 @@
   <meta name="twitter:title" content="salaryatana | သဠာယတန" />
   <meta name="twitter:description" content="salaryatana - Mindfulness in Theory and Practice | စာနှင့်လက်တွေ့နည်းကျ တရားရှုမှတ်ခြင်း | Mindfulness with salaryatana" />
   <meta name="twitter:image" content="https://salaryatana.github.io/SEO/salaryatana.jpg" />
-  <link rel="stylesheet" href="theme-darkmode.css" />
+  <style>
+    body {
+      font-family: "Myanmar Text", sans-serif;
+      background-color: #fff;
+      color: #d4a017;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      padding-bottom: 120px;
+    }
+    h1 {
+      margin-top: 10px;
+      font-size: 2rem;
+      color: #d4a017;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      margin-bottom: 10px;
+    }
+    p {
+      margin: 5px 0;
+    }
+    a {
+      color: #d4a017;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #d4a017;
+    }
+    nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-top: 1px solid #ccc;
+      padding: 10px 0;
+      z-index: 999;
+    }
+    nav a {
+      margin: 0 10px;
+      color: #d4a017;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <!-- ✅ Header Include for Dark Mode -->
+
+  <!-- ✅ Dark Mode Header Include -->
   <div include-html="header-darkmode.html"></div>
 
   <h1>Salaryatana | သဠာယတန</h1>
@@ -59,19 +117,28 @@
     <a href="about.html">ℹ️ အကြောင်း</a>
   </nav>
 
-  <!-- ✅ Script to load header include -->
+  <!-- ✅ Include header-html script -->
   <script>
     function includeHTML() {
       const elements = document.querySelectorAll('[include-html]');
-      elements.forEach(async el => {
+      elements.forEach(el => {
         const file = el.getAttribute('include-html');
-        const res = await fetch(file);
-        if (res.ok) el.innerHTML = await res.text();
+        fetch(file)
+          .then(response => {
+            if (response.ok) return response.text();
+            throw new Error('Failed to load');
+          })
+          .then(data => {
+            el.innerHTML = data;
+            el.removeAttribute('include-html');
+            includeHTML(); // recursive include if nested
+          })
+          .catch(err => {
+            el.innerHTML = "Include failed.";
+          });
       });
     }
     includeHTML();
   </script>
-
-  <script src="theme-darkmode.js"></script>
 </body>
 </html>
