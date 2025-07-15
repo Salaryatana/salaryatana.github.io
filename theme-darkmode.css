@@ -1,28 +1,34 @@
-body.dark {
-  background-color: #000;
-  color: #d4a017;
+nav.category-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+  padding: 10px 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
-body.dark a {
+nav.category-bar a {
   color: #d4a017;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
-body.dark nav {
-  background-color: #000;
+nav.category-bar a:hover {
+  text-decoration: underline;
+}
+
+/* ✅ Dark Mode Support */
+body.dark nav.category-bar {
+  background-color: #1a1a1a;
   border-color: #444;
 }
 
-body.dark nav a {
-  color: #d4a017;
-}
-
-.dark-toggle {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+body.dark nav.category-bar a {
   color: #d4a017;
 }
