@@ -2,14 +2,11 @@
 <html lang="my">
 <head>
   <meta charset="UTF-8" />
-  <title>🕘 မှတ်တမ်း | Salaryatana</title>
-
-  <!-- Meta Tags -->
+  <title>ℹ️ အကြောင်း | Salaryatana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Salaryatana မှာ ပို့ချခဲ့သည့် မှတ်တမ်းများအားလုံး" />
-  <meta name="keywords" content="Salaryatana, မှတ်တမ်း, message history, group chat, chat log" />
+  <meta name="description" content="Salaryatana ၏အကြောင်းအရာ" />
+  <meta name="keywords" content="Salaryatana, အကြောင်း, about, dhamma, mindfulness" />
 
-  <!-- Custom CSS -->
   <style>
     body {
       font-family: "Noto Sans Myanmar", sans-serif;
@@ -18,123 +15,39 @@
       padding: 1rem;
       max-width: 700px;
       margin: auto;
-      transition: background-color 0.3s, color 0.3s;
     }
 
-    body.dark {
-      background-color: #1e1e1e;
-      color: #ddd;
+    .category-bar {
+      background-color: #f0f0f0;
+      color: #000;
+      padding: 10px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    h1 {
-      text-align: center;
-      color: inherit;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .message {
-      background: #fff;
-      border-left: 4px solid #ffc107;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      border-radius: 8px;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    body.dark .message {
-      background: #2a2a2a;
-      color: #ddd;
-    }
-
-    .meta {
-      font-size: 0.9em;
-      color: #888;
-    }
-
-    body.dark .meta {
-      color: #aaa;
-    }
-
-    .content {
-      font-size: 1.05em;
-      margin-top: 0.5rem;
-    }
-
-    /* Dark mode toggle */
-    .toggle-container {
-      text-align: center;
-      margin: 2rem 0;
-    }
-
-    .footer-nav {
-      text-align: center;
-      margin-top: 3rem;
-      padding-top: 1rem;
-      border-top: 1px solid #ccc;
-      font-size: 0.95em;
-    }
-
-    .footer-nav a {
-      margin: 0 1rem;
+    .category-bar a {
       text-decoration: none;
-      color: #007bff;
-    }
-
-    body.dark .footer-nav {
-      border-color: #444;
-    }
-
-    body.dark .footer-nav a {
-      color: #66bfff;
+      color: inherit;
+      font-weight: bold;
     }
   </style>
 </head>
 
 <body>
-  <h1>🕘 မှတ်တမ်း</h1>
-
-  <!-- Message 1 -->
-  <div class="message">
-    <div class="meta">📅 2025-07-13 | 🧘 Ashin Pyin Nyar Wa Ra</div>
-    <div class="content">
-      အခန်း (၃) ထဲမှာ ပြောခဲ့တဲ့ အကြောင်းအရာတွေကို မနေ့ညမှာ ထပ်ဖြန့်မယ်။
-    </div>
-  </div>
-
-  <!-- Message 2 -->
-  <div class="message">
-    <div class="meta">📅 2025-07-12 | 🗣️ အသံအလှည့် (Bot)</div>
-    <div class="content">
-      စာအုပ်ဖော်ပြချက်မှာ နောက်ထပ် မေးခွန်းနှင့် FAQ section ထည့်ဖို့ အကြံပြုထားပါတယ်။
-    </div>
-  </div>
-
-  <!-- Dark mode toggle button -->
-  <div class="toggle-container">
-    <button onclick="toggleDarkMode()">🌙 / ☀️ Dark Mode ပြောင်းရန်</button>
-  </div>
-
-  <!-- Footer menu (Category Links) -->
-  <div class="footer-nav">
-    <a href="index.html">📚 စာအုပ်</a>
+  <!-- ✅ Category Nav Bar -->
+  <nav class="category-bar">
+    <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
+    <a href="book.html">📘 စာအုပ်</a>
+    <a href="chat-json.html">🤖 မေးခွန်းမေး</a>
     <a href="history.html">🕘 မှတ်တမ်း</a>
-    <a href="message.html">💬 စာပို့ရန်</a>
+    <a href="message.html">✉️ စာပို့ရန်</a>
     <a href="about.html">ℹ️ အကြောင်း</a>
-  </div>
+  </nav>
 
-  <!-- JavaScript for dark mode -->
-  <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark");
-      localStorage.setItem("darkMode", document.body.classList.contains("dark"));
-    }
-
-    // Restore mode from previous session
-    if (localStorage.getItem("darkMode") === "true") {
-      document.body.classList.add("dark");
-    }
-  </script>
+  <h1>ℹ️ Salaryatana ၏အကြောင်း</h1>
+  <p>
+    Salaryatana သည် ဒေသနာများ၊ တရားပေးချက်များ၊ သုတေသန၊ မေးခွန်းဖြေခြင်းများ စုစည်းသည့် open Dhamma platform တစ်ခုဖြစ်သည်။ အသုံးပြုသူများအနေဖြင့် မိမိတို့၏ စိတ်ပိုင်းဆိုင်ရာ တက်ကြွမှုအတွက် အသုံးချနိုင်သည်။
+  </p>
 </body>
 </html>
