@@ -2,7 +2,13 @@
 <html lang="my">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ℹ️ အကြောင်း | Salaryatana</title>
+
+  <!-- ✅ Dark Mode CSS & JS -->
+  <link rel="stylesheet" href="theme-darkmode.css" />
+  <script src="theme-darkmode.js" defer></script>
+
   <style>
     body {
       font-family: "Myanmar Text", sans-serif;
@@ -10,8 +16,24 @@
       color: #d4a017;
       margin: 0;
       padding: 20px;
-      padding-bottom: 100px; /* Category bar အောက်မှာမဖုံးအောင် */
       text-align: center;
+      position: relative;
+      padding-bottom: 120px; /* nav/footer space */
+    }
+    h1 {
+      margin-top: 10px;
+      font-size: 2rem;
+    }
+    p {
+      margin: 10px 0;
+    }
+    a {
+      color: #d4a017;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
     nav {
       position: fixed;
@@ -27,14 +49,27 @@
       margin: 0 10px;
       color: #d4a017;
       font-weight: bold;
-      text-decoration: none;
     }
     nav a:hover {
       text-decoration: underline;
     }
+    .dark-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #d4a017;
+    }
   </style>
 </head>
 <body>
+
+  <!-- ✅ Dark Mode Toggle Button -->
+  <button onclick="toggleDarkMode()" class="dark-toggle">🌙</button>
+
   <h1>ℹ️ Salaryatana အကြောင်း</h1>
   <p>ဒီနေရာမှာ မင်းရဲ့အဖွဲ့အစည်း၊ မင်းကိုယ်တိုင်၊ ရည်ရွယ်ချက်တွေအကြောင်းရေးနိုင်ပါတယ်။</p>
 
@@ -46,5 +81,6 @@
     <a href="message.html">✉️ စာပို့ရန်</a>
     <a href="about.html">ℹ️ အကြောင်း</a>
   </nav>
+
 </body>
 </html>
