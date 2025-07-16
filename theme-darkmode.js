@@ -6,7 +6,7 @@ function toggleDarkMode() {
   // ✅ Toggle icon
   const btn = document.querySelector('.dark-toggle');
   if (btn) {
-    btn.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+    btn.textContent = document.body.classList.contains("dark-mode") ? "🌙" : "☀️";
   }
 }
 
@@ -19,6 +19,6 @@ window.addEventListener("DOMContentLoaded", () => {
   // ✅ Set correct icon on load
   const btn = document.querySelector('.dark-toggle');
   if (btn) {
-    btn.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+    btn.textContent = document.body.classList.contains("dark-mode") ? "🌙" : "☀️";
   }
 });
