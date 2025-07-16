@@ -2,12 +2,16 @@
 <html lang="my">
 <head>
   <meta charset="UTF-8" />
-  <title>💬 စာပို့ရန် | salaryatana | သဠာယတန </title>
+  <title>💬 စာပို့ရန် | Salaryatana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+
+  <!-- ✅ External Dark Mode Files -->
+  <link rel="stylesheet" href="theme-darkmode.css" />
+  <script src="theme-darkmode.js" defer></script>
 
   <style>
     body {
@@ -16,17 +20,20 @@
       margin: auto;
       padding: 20px;
       padding-bottom: 140px;
-      background-color: #fefbe9;
-      color: #5d4037;
+      background-color: #fff;
+      color: #333;
       transition: background-color 0.3s, color 0.3s;
     }
-    body.dark-mode {
+    body.dark {
       background-color: #121212;
       color: #eee;
     }
     h1 {
       text-align: center;
       color: #d4a017;
+    }
+    body.dark h1 {
+      color: #f5c34d;
     }
     #messages {
       border: 1px solid #ccc;
@@ -39,34 +46,27 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       color: #333;
     }
-    body.dark-mode #messages {
+    body.dark #messages {
       background: #1e1e1e;
       color: #ddd;
+      border-color: #444;
     }
     .message {
       margin-bottom: 10px;
       padding-bottom: 6px;
       border-bottom: 1px solid #ddd;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
-    body.dark-mode .message {
+    body.dark .message {
       border-bottom: 1px solid #444;
-    }
-    .msg-info {
-      display: flex;
-      flex-direction: column;
     }
     .name {
       font-weight: bold;
-      margin-bottom: 2px;
     }
     .time {
       font-size: 0.8rem;
       color: #999;
     }
-    body.dark-mode .time {
+    body.dark .time {
       color: #aaa;
     }
     input[type="text"] {
@@ -77,7 +77,7 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
-    body.dark-mode input[type="text"] {
+    body.dark input[type="text"] {
       background-color: #2a2a2a;
       color: #eee;
       border: 1px solid #555;
@@ -95,18 +95,6 @@
     button:hover {
       background-color: #689f38;
     }
-    #darkModeToggle {
-      background-color: #2196f3;
-    }
-    #darkModeToggle:hover {
-      background-color: #1769aa;
-    }
-    #clearBtn {
-      background-color: #e53935;
-    }
-    #clearBtn:hover {
-      background-color: #ab000d;
-    }
     .delete-btn {
       background-color: transparent;
       border: none;
@@ -115,7 +103,7 @@
       font-size: 0.9rem;
     }
 
-    /* ✅ Category Bar (Index Style Fixed Bottom) */
+    /* ✅ Category Bar */
     .category-bar {
       position: fixed;
       bottom: 0;
@@ -136,7 +124,7 @@
     .category-bar a:hover {
       text-decoration: underline;
     }
-    body.dark-mode .category-bar {
+    body.dark .category-bar {
       background: #1e1e1e;
       border-top: 1px solid #444;
     }
@@ -144,17 +132,19 @@
 </head>
 <body>
 
-  <h1>💬 Group Chat | Salaryatana</h1>
+  <!-- ✅ Dark Mode Button -->
+  <button onclick="toggleDarkMode()" class="dark-toggle">🌙</button>
+
+  <h1>💬 Group Chat </h1>
 
   <div id="messages"></div>
 
   <input type="text" id="nameInput" placeholder="နာမည် (အဖွဲ့ဝင်)" />
   <input type="text" id="messageInput" placeholder="စာသားရေးပါ..." />
   <button onclick="sendMessage()">ပို့မယ်</button>
-  <button id="darkModeToggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-  <button id="clearBtn" onclick="clearMessages()">🧹 Clear All</button>
+  <button onclick="clearMessages()">🧹 Clear All</button>
 
-  <!-- ✅ Fixed Bottom Category Bar -->
+  <!-- ✅ Fixed Category Bar -->
   <nav class="category-bar">
     <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
     <a href="book.html">📘 စာအုပ်</a>
@@ -193,17 +183,15 @@
         msgDiv.className = "message";
 
         const infoDiv = document.createElement("div");
-        infoDiv.className = "msg-info";
-
-        const name = document.createElement("span");
+        const name = document.createElement("div");
         name.className = "name";
         name.textContent = data.name;
 
-        const time = document.createElement("span");
+        const time = document.createElement("div");
         time.className = "time";
         time.textContent = new Date(data.timestamp).toLocaleTimeString("my-MM", { hour12: false });
 
-        const text = document.createElement("p");
+        const text = document.createElement("div");
         text.textContent = data.text;
 
         infoDiv.appendChild(name);
@@ -235,10 +223,6 @@
       localStorage.setItem("chatName", name);
       db.ref("messages").push({ name, text, timestamp: Date.now() });
       messageInput.value = "";
-    }
-
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
     }
 
     function clearMessages() {
