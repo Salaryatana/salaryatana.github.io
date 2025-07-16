@@ -46,7 +46,7 @@ function unsetUserLiked() {
 function updateUI(count) {
   likeCountSpan.textContent = formatCount(count);
   if (hasUserLiked()) {
-    likeBtn.classList.add('liked');  // Show red heart
+    likeBtn.classList.add('liked');  // Show yellow heart
   } else {
     likeBtn.classList.remove('liked');  // Show white heart
   }
