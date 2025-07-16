@@ -8,15 +8,17 @@ const firebaseConfig = {
   messagingSenderId: "895626474447",
   appId: "1:895626474447:web:aedcbddcb530f269da238e"
 };
+
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// ✅ DOM Elements
+// ✅ Elements & keys
 const likePath = 'likes/book';
 const likeBtn = document.getElementById('like-btn');
 const likeCountSpan = document.getElementById('like-count');
+const likeKey = 'liked_' + likePath.replace(/\//g, '_');
 
-// ✅ Format like count
+// ✅ Count formatting
 function formatCount(num) {
   if (num < 1000) return num.toString();
   const units = ['K', 'M', 'B', 'T'];
@@ -29,8 +31,7 @@ function formatCount(num) {
   return n.toFixed(1).replace(/\.0$/, '') + units[unitIndex];
 }
 
-// ✅ LocalStorage helpers
-const likeKey = 'liked_' + likePath.replace(/\//g, '_');
+// ✅ LocalStorage functions
 function hasUserLiked() {
   return localStorage.getItem(likeKey) === 'true';
 }
@@ -41,13 +42,17 @@ function unsetUserLiked() {
   localStorage.removeItem(likeKey);
 }
 
-// ✅ Update UI
+// ✅ UI update
 function updateUI(count) {
   likeCountSpan.textContent = formatCount(count);
-  likeBtn.textContent = hasUserLiked() ? "❤️" : "🤍";
+  if (hasUserLiked()) {
+    likeBtn.classList.add('liked');  // Show red heart
+  } else {
+    likeBtn.classList.remove('liked');  // Show white heart
+  }
 }
 
-// ✅ Load likes from Firebase
+// ✅ Load count from Firebase
 function loadLikes() {
   db.ref(likePath).once('value').then(snapshot => {
     const count = snapshot.val() || 0;
@@ -55,7 +60,7 @@ function loadLikes() {
   });
 }
 
-// ✅ Toggle like/unlike like dark-mode logic
+// ✅ Toggle like/unlike
 function toggleLike() {
   const ref = db.ref(likePath);
   if (hasUserLiked()) {
@@ -77,6 +82,6 @@ function toggleLike() {
   }
 }
 
-// ✅ Events
+// ✅ Bind
 likeBtn.addEventListener('click', toggleLike);
 window.addEventListener('DOMContentLoaded', loadLikes);
