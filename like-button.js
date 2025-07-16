@@ -1,5 +1,3 @@
-// like-button.js
-
 // ✅ Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyA4A1nYZ4oaGbdkl2ZpNUyMu7nn7GE2QEY",
@@ -10,16 +8,15 @@ const firebaseConfig = {
   messagingSenderId: "895626474447",
   appId: "1:895626474447:web:aedcbddcb530f269da238e"
 };
-
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// ✅ Path
+// ✅ DOM Elements
 const likePath = 'likes/book';
-const likeBtn = document.getElementById('like-btn');
+const likeBtn = document.getElementById('like-button');
 const likeCountSpan = document.getElementById('like-count');
 
-// ✅ Format count (K/M/B)
+// ✅ Format like count
 function formatCount(num) {
   if (num < 1000) return num.toString();
   const units = ['K', 'M', 'B', 'T'];
@@ -32,7 +29,7 @@ function formatCount(num) {
   return n.toFixed(1).replace(/\.0$/, '') + units[unitIndex];
 }
 
-// ✅ LocalStorage check
+// ✅ LocalStorage helpers
 const likeKey = 'liked_' + likePath.replace(/\//g, '_');
 function hasUserLiked() {
   return localStorage.getItem(likeKey) === 'true';
@@ -40,17 +37,21 @@ function hasUserLiked() {
 function setUserLiked() {
   localStorage.setItem(likeKey, 'true');
 }
+function unsetUserLiked() {
+  localStorage.removeItem(likeKey);
+}
 
 // ✅ Update UI
 function updateUI(count) {
   likeCountSpan.textContent = formatCount(count);
   if (hasUserLiked()) {
     likeBtn.classList.add('liked');
-    likeBtn.disabled = true;
+  } else {
+    likeBtn.classList.remove('liked');
   }
 }
 
-// ✅ Load from Firebase
+// ✅ Load current likes
 function loadLikes() {
   db.ref(likePath).once('value').then(snapshot => {
     const count = snapshot.val() || 0;
@@ -58,21 +59,32 @@ function loadLikes() {
   });
 }
 
-// ✅ Click
-function incrementLike() {
-  if (hasUserLiked()) return;
+// ✅ Toggle Like/Unlike
+function toggleLike() {
   const ref = db.ref(likePath);
-  ref.transaction(current => {
-    if (current === null) return 1;
-    return current + 1;
-  }, (error, committed, snapshot) => {
-    if (committed) {
-      updateUI(snapshot.val());
-      setUserLiked();
-    }
-  });
+  if (hasUserLiked()) {
+    // Unlike
+    ref.transaction(current => {
+      return (current || 1) - 1;
+    }, (error, committed, snapshot) => {
+      if (committed) {
+        updateUI(snapshot.val());
+        unsetUserLiked();
+      }
+    });
+  } else {
+    // Like
+    ref.transaction(current => {
+      return (current || 0) + 1;
+    }, (error, committed, snapshot) => {
+      if (committed) {
+        updateUI(snapshot.val());
+        setUserLiked();
+      }
+    });
+  }
 }
 
-// ✅ Event
-likeBtn.addEventListener('click', incrementLike);
+// ✅ Event Bindings
+likeBtn.addEventListener('click', toggleLike);
 window.addEventListener('DOMContentLoaded', loadLikes);
