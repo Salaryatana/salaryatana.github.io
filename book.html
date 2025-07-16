@@ -4,8 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>📘 စာအုပ် | Salaryatana</title>
+
+  <!-- ✅ Stylesheets -->
   <link rel="stylesheet" href="theme-darkmode.css" />
   <link rel="stylesheet" href="like-button.css" />
+
   <style>
     body {
       font-family: "Myanmar Text", sans-serif;
@@ -112,6 +115,7 @@
   </style>
 </head>
 <body>
+  <!-- ✅ Dark Mode Button -->
   <button onclick="toggleDarkMode()" class="dark-toggle" id="darkToggleBtn">🌙</button>
 
   <h1>📘 စာအုပ်စာရင်း</h1>
@@ -123,10 +127,11 @@
 
   <!-- ✅ TikTok-style Like Button -->
   <div class="like-box">
-    <button class="like-button" id="like-button">❤️</button>
+    <button class="like-button" id="like-btn">❤️</button>
     <span id="like-count">0</span>
   </div>
 
+  <!-- ✅ Category Nav Bar -->
   <nav>
     <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
     <a href="book.html">📘 စာအုပ်</a>
@@ -136,9 +141,11 @@
     <a href="about.html">ℹ️ အကြောင်း</a>
   </nav>
 
-  <!-- ✅ Firebase SDK + Like Button Script -->
+  <!-- ✅ Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <!-- ✅ Like Button Script -->
   <script src="like-button.js"></script>
 
   <!-- ✅ Dark Mode Script -->
