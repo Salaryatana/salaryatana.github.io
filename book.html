@@ -121,9 +121,10 @@
     <a href="#">📖 စာအုပ် ဖတ်ရန် (Coming Soon)</a>
   </div>
 
-  <div id="like-container">
-    <button id="like-button">❤️</button>
-    <span id="like-count">0</span> likes
+  <!-- ✅ TikTok-style Like Button -->
+  <div class="like-box">
+    <button class="like-button" id="like-button">❤️</button>
+    <span id="like-count">0</span>
   </div>
 
   <nav>
@@ -135,9 +136,12 @@
     <a href="about.html">ℹ️ အကြောင်း</a>
   </nav>
 
+  <!-- ✅ Firebase SDK + Like Button Script -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
   <script src="like-button.js"></script>
+
+  <!-- ✅ Dark Mode Script -->
   <script>
     function toggleDarkMode() {
       const body = document.body;
