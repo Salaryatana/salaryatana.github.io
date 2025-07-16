@@ -20,6 +20,10 @@
   <meta name="twitter:title" content="salaryatana | သဠာယတန" />
   <meta name="twitter:description" content="salaryatana - Mindfulness in Theory and Practice | စာနှင့်လက်တွေ့နည်းကျ တရားရှုမှတ်ခြင်း | Mindfulness with salaryatana" />
   <meta name="twitter:image" content="https://salaryatana.github.io/SEO/salaryatana.jpg" />
+
+  <!-- ✅ Stylesheets -->
+  <link rel="stylesheet" href="theme-darkmode.css" />
+
   <style>
     body {
       font-family: "Myanmar Text", sans-serif;
@@ -77,11 +81,17 @@
     nav a:hover {
       text-decoration: underline;
     }
+    .dark-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+    }
   </style>
-</head>
-<body>
-
-<link rel="stylesheet" href="theme-darkmode.css" />
 </head>
 <body>
 
@@ -112,19 +122,19 @@
   <footer>
     <p>ဆက်သွယ်ရန် - ၀၉ ၈၈၄ ၆၆၄ ၆၄၇ / 09 884 664 647</p>
   </footer>
-<!-- body အဆုံးမှာထည့် -->
-<div id="category-placeholder"></div>
 
-<script>
-  fetch("category-bar.html")
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById("category-placeholder").innerHTML = data;
-    });
-</script>
-  
- 
-   <script src="theme-darkmode.js"></script>
+  <!-- ✅ Category bar placeholder -->
+  <div id="category-placeholder"></div>
+
+  <!-- ✅ Scripts -->
+  <script src="theme-darkmode.js"></script>
+  <script>
+    fetch("category-bar.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("category-placeholder").innerHTML = data;
+      });
+  </script>
+
 </body>
-  </html>
-  
+</html>
