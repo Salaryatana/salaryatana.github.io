@@ -93,7 +93,7 @@
       position: fixed;
       top: 15px;
       right: 15px;
-      background: #d4a017;
+      background: transparent;
       border: none;
       border-radius: 50%;
       width: 44px;
@@ -101,12 +101,38 @@
       font-size: 24px;
       cursor: pointer;
       color: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      box-shadow: none;
       z-index: 1000;
     }
 
     .dark-toggle:hover {
-      background: #f9d71c;
+      background: transparent;
+    }
+
+    #like-container {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 20px;
+    }
+
+    #like-button {
+      font-size: 28px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #d4a017;
+    }
+
+    #like-button.liked {
+      color: red;
+    }
+
+    body.dark-mode #like-button {
+      color: #f9d71c;
+    }
+
+    body.dark-mode #like-button.liked {
+      color: red;
     }
   </style>
 </head>
@@ -120,6 +146,11 @@
     <a href="#">📖 စာအုပ် ဖတ်ရန် (Coming Soon)</a>
   </div>
 
+  <div id="like-container">
+    <button id="like-button">❤️</button>
+    <span id="like-count">0</span> likes
+  </div>
+
   <nav>
     <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
     <a href="book.html">📘 စာအုပ်</a>
@@ -129,6 +160,7 @@
     <a href="about.html">ℹ️ အကြောင်း</a>
   </nav>
 
+  <script src="like-button.js"></script>
   <script>
     function toggleDarkMode() {
       const body = document.body;
