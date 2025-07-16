@@ -15,7 +15,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// ✅ Database path (စာမျက်နှာအလိုက်ပြောင်းနိုင်)
+// ✅ Database path
 const likePath = 'likes/book';
 
 // ✅ HTML element references
@@ -35,7 +35,7 @@ function formatCount(num) {
   return n.toFixed(1).replace(/\.0$/, '') + units[unitIndex];
 }
 
-// ✅ LocalStorage key setup
+// ✅ LocalStorage key
 const likeKey = 'liked_' + likePath.replace(/\//g, '_');
 
 function hasUserLiked() {
@@ -58,7 +58,7 @@ function updateUI(count) {
   }
 }
 
-// ✅ Load likes from Firebase
+// ✅ Load from Firebase
 function loadLikes() {
   db.ref(likePath).once('value').then(snapshot => {
     const count = snapshot.val() || 0;
@@ -66,7 +66,7 @@ function loadLikes() {
   });
 }
 
-// ✅ Handle Like Click (one-time per user)
+// ✅ Increment
 function incrementLike() {
   if (hasUserLiked()) return;
 
@@ -84,8 +84,8 @@ function incrementLike() {
   });
 }
 
-// ✅ Button click listener
+// ✅ Button click
 likeBtn.addEventListener('click', incrementLike);
 
-// ✅ Run on page load
+// ✅ On load
 window.addEventListener('DOMContentLoaded', loadLikes);
