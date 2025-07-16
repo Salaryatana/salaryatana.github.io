@@ -65,19 +65,31 @@
       color: #d4a017;
     }
 
-    /* ✅ Like button style */
+    /* ✅ TikTok-style Like Button */
+    .like-box {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      text-align: center;
+      z-index: 999;
+    }
     .like-button {
       background: none;
       border: none;
-      font-size: 1.5rem;
+      font-size: 2.2rem;
       color: #888;
       cursor: pointer;
       transition: color 0.3s;
-      margin-top: 10px;
     }
     .like-button.liked {
       color: #fe2c55;
       cursor: default;
+    }
+    #like-count {
+      display: block;
+      font-size: 0.9rem;
+      color: #d4a017;
+      margin-top: 5px;
     }
   </style>
 </head>
@@ -98,9 +110,11 @@
   <h1>📘 စာအုပ်</h1>
   <p>ဒီနေရာမှာ သင်ဖတ်လိုတဲ့စာအုပ်တွေ၊ သင်္ချာနည်းလမ်းတွေထည့်နိုင်ပါတယ်။</p>
 
-  <!-- ✅ Like button (မူရင်း layout မပြောင်းပဲ) -->
-  <button id="like-btn" class="like-button">❤️ Like</button>
-  <span id="like-count">0</span>
+  <!-- ✅ Like button (TikTok style) -->
+  <div class="like-box">
+    <button id="like-btn" class="like-button">❤️</button>
+    <span id="like-count">0</span>
+  </div>
 
   <!-- ✅ Firebase Scripts & Like Logic -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
