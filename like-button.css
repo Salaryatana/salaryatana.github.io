@@ -1,12 +1,26 @@
+/* ✅ TikTok-style Like Button */
+.like-box {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  text-align: center;
+  z-index: 999;
+}
 .like-button {
   background: none;
   border: none;
-  font-size: 1.6rem;
+  font-size: 2.2rem;
   color: #888;
   cursor: pointer;
   transition: color 0.3s;
 }
 .like-button.liked {
-  color: #fe2c55;
+  color: #fe2c55; /* TikTok red */
   cursor: default;
+}
+#like-count {
+  display: block;
+  font-size: 0.9rem;
+  color: #d4a017;
+  margin-top: 5px;
 }
