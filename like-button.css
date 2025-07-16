@@ -11,13 +11,14 @@
   background: none;
   border: none;
   font-size: 2.2rem;
-  color: #ffffff; /* ✅ မလုပ်သေးရင် အသဲဖြူ */
+  color: #ffffff; /* ⬅️ မနှိပ်ခင် – အသဲအဖြူ */
   cursor: pointer;
   transition: color 0.3s;
+  filter: drop-shadow(0 0 1px #000);
 }
 
 .like-button.liked {
-  color: #fe2c55; /* ✅ လုပ်ပြီးရင် TikTok-style နီ */
+  color: #fe2c55; /* ⬅️ နှိပ်ပြီး – TikTok-style နီ */
   cursor: default;
 }
 
