@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>📘 စာအုပ် | Salaryatana</title>
 
-  <!-- ✅ Stylesheets -->
-  <link rel="stylesheet" href="theme-darkmode.css" />
-  <link rel="stylesheet" href="like-button.css" />
-
+  <!-- ✅ Style -->
   <style>
     body {
       font-family: "Myanmar Text", sans-serif;
@@ -69,6 +66,21 @@
       text-decoration: underline;
     }
 
+    .dark-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: transparent;
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #fff;
+      z-index: 1000;
+    }
+
     body.dark-mode {
       background-color: #121212;
       color: #f9d71c;
@@ -93,26 +105,6 @@
       color: #f9d71c;
     }
 
-    .dark-toggle {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background: transparent;
-      border: none;
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      font-size: 24px;
-      cursor: pointer;
-      color: #fff;
-      box-shadow: none;
-      z-index: 1000;
-    }
-
-    .dark-toggle:hover {
-      background: transparent;
-    }
-
     /* ✅ Like Button */
     .like-box {
       position: fixed;
@@ -126,14 +118,14 @@
       background: none;
       border: none;
       font-size: 2.2rem;
-      color: #ffffff;
+      color: #ffffff; /* မနှိပ်ရသေးရင်ဖြူ */
       cursor: pointer;
       transition: color 0.3s;
       filter: drop-shadow(0 0 1px #000);
     }
 
     .like-button.liked {
-      color: #fe2c55;
+      color: #fe2c55; /* နှိပ်ပြီးရင် နီ */
     }
 
     #like-count {
@@ -145,23 +137,23 @@
   </style>
 </head>
 <body>
-  <!-- ✅ Dark Mode Button -->
+  <!-- ✅ Dark Mode Toggle -->
   <button onclick="toggleDarkMode()" class="dark-toggle" id="darkToggleBtn">🌙</button>
 
   <h1>📘 စာအုပ်စာရင်း</h1>
   <div class="book-list">
-    <a href="https://candy-mahogany-70a.notion.site/Version-3-21acaaa9744980d9915dfa384437c7e7" target="_blank">Version 3 - နောက်ဆုံးပြင်ဆင်မှု</a>
-    <a href="https://candy-mahogany-70a.notion.site/salaryatana-219caaa974498080979ed2f7db6f812c" target="_blank">Version များအားလုံး</a>
+    <a href="#" target="_blank">Version 3 - နောက်ဆုံးပြင်ဆင်မှု</a>
+    <a href="#" target="_blank">Version များအားလုံး</a>
     <a href="#">📖 စာအုပ် ဖတ်ရန် (Coming Soon)</a>
   </div>
 
   <!-- ✅ TikTok-style Like Button -->
   <div class="like-box">
-    <button class="like-button" id="like-btn">❤️</button>
+    <button class="like-button" id="like-button">❤️</button>
     <span id="like-count">0</span>
   </div>
 
-  <!-- ✅ Category Nav Bar -->
+  <!-- ✅ Bottom Nav -->
   <nav>
     <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
     <a href="book.html">📘 စာအုပ်</a>
@@ -177,7 +169,6 @@
 
   <!-- ✅ Like Button Script -->
   <script>
-    // Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyA4A1nYZ4oaGbdkl2ZpNUyMu7nn7GE2QEY",
       authDomain: "salaryatana.firebaseapp.com",
@@ -191,10 +182,11 @@
     const db = firebase.database();
 
     const likePath = 'likes/book';
-    const likeBtn = document.getElementById('like-btn');
+    const likeBtn = document.getElementById('like-button');
     const likeCountSpan = document.getElementById('like-count');
 
     const likeKey = 'liked_' + likePath.replace(/\//g, '_');
+
     function hasUserLiked() {
       return localStorage.getItem(likeKey) === 'true';
     }
