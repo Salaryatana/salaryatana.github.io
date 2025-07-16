@@ -135,7 +135,7 @@
   <!-- ✅ Dark Mode Button -->
   <button onclick="toggleDarkMode()" class="dark-toggle">🌙</button>
 
-  <h1>💬 Group Chat </h1>
+  <h1>💬 Group Chat</h1>
 
   <div id="messages"></div>
 
@@ -183,6 +183,7 @@
         msgDiv.className = "message";
 
         const infoDiv = document.createElement("div");
+
         const name = document.createElement("div");
         name.className = "name";
         name.textContent = data.name;
