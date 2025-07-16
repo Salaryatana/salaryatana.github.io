@@ -21,9 +21,8 @@
   <meta name="twitter:description" content="salaryatana - Mindfulness in Theory and Practice | စာနှင့်လက်တွေ့နည်းကျ တရားရှုမှတ်ခြင်း | Mindfulness with salaryatana" />
   <meta name="twitter:image" content="https://salaryatana.github.io/SEO/salaryatana.jpg" />
 
-  <!-- ✅ Stylesheets -->
+  <!-- ✅ Styles -->
   <link rel="stylesheet" href="theme-darkmode.css" />
-
   <style>
     body {
       font-family: "Myanmar Text", sans-serif;
@@ -93,6 +92,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- ✅ Dark Mode Toggle Button -->
@@ -123,7 +123,7 @@
     <p>ဆက်သွယ်ရန် - ၀၉ ၈၈၄ ၆၆၄ ၆၄၇ / 09 884 664 647</p>
   </footer>
 
-  <!-- ✅ Category bar placeholder -->
+  <!-- ✅ Category Bar Placeholder -->
   <div id="category-placeholder"></div>
 
   <!-- ✅ Scripts -->
@@ -133,8 +133,8 @@
       .then(res => res.text())
       .then(data => {
         document.getElementById("category-placeholder").innerHTML = data;
-      });
+      })
+      .catch(error => console.error("Category bar load error:", error));
   </script>
-
 </body>
 </html>
