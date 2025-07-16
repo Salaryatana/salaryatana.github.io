@@ -1,0 +1,12 @@
+.like-button {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.like-button.liked {
+  color: #fe2c55;
+  cursor: default;
+}
