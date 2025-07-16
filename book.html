@@ -64,6 +64,21 @@
       cursor: pointer;
       color: #d4a017;
     }
+
+    /* ✅ Like button style */
+    .like-button {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #888;
+      cursor: pointer;
+      transition: color 0.3s;
+      margin-top: 10px;
+    }
+    .like-button.liked {
+      color: #fe2c55;
+      cursor: default;
+    }
   </style>
 </head>
 <body>
@@ -82,6 +97,15 @@
 
   <h1>📘 စာအုပ်</h1>
   <p>ဒီနေရာမှာ သင်ဖတ်လိုတဲ့စာအုပ်တွေ၊ သင်္ချာနည်းလမ်းတွေထည့်နိုင်ပါတယ်။</p>
+
+  <!-- ✅ Like button (မူရင်း layout မပြောင်းပဲ) -->
+  <button id="like-btn" class="like-button">❤️ Like</button>
+  <span id="like-count">0</span>
+
+  <!-- ✅ Firebase Scripts & Like Logic -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script src="like-button.js"></script>
 
 </body>
 </html>
