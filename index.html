@@ -20,9 +20,6 @@
   <meta name="twitter:title" content="salaryatana | သဠာယတန" />
   <meta name="twitter:description" content="salaryatana - Mindfulness in Theory and Practice | စာနှင့်လက်တွေ့နည်းကျ တရားရှုမှတ်ခြင်း | Mindfulness with salaryatana" />
   <meta name="twitter:image" content="https://salaryatana.github.io/SEO/salaryatana.jpg" />
-
-  <!-- ✅ Styles -->
-  <link rel="stylesheet" href="theme-darkmode.css" />
   <style>
     body {
       font-family: "Myanmar Text", sans-serif;
@@ -80,19 +77,12 @@
     nav a:hover {
       text-decoration: underline;
     }
-    .dark-toggle {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      font-size: 24px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 1000;
-    }
   </style>
 </head>
+<body>
 
+<link rel="stylesheet" href="theme-darkmode.css" />
+</head>
 <body>
 
   <!-- ✅ Dark Mode Toggle Button -->
@@ -122,19 +112,17 @@
   <footer>
     <p>ဆက်သွယ်ရန် - ၀၉ ၈၈၄ ၆၆၄ ၆၄၇ / 09 884 664 647</p>
   </footer>
-
-  <!-- ✅ Category Bar Placeholder -->
-  <div id="category-placeholder"></div>
-
-  <!-- ✅ Scripts -->
-  <script src="theme-darkmode.js"></script>
-  <script>
-    fetch("category-bar.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("category-placeholder").innerHTML = data;
-      })
-      .catch(error => console.error("Category bar load error:", error));
-  </script>
+<nav>
+    <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
+    <a href="book.html">📘 စာအုပ်</a>
+    <a href="chat-json.html">🤖 မေးခွန်းမေး</a>
+    <a href="history.html">🕘 မှတ်တမ်း</a>
+    <a href="message.html">✉️ စာပို့ရန်</a>
+    <a href="about.html">ℹ️ အကြောင်း</a>
+</nav>
+  
+ 
+   <script src="theme-darkmode.js"></script>
 </body>
-</html>
+  </html>
+  
