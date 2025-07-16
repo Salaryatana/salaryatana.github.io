@@ -1,7 +1,7 @@
 /* ✅ TikTok-style Like Button */
 .like-box {
   position: fixed;
-  bottom: 240px; /* ✅ nav ထက်အပေါ် */
+  bottom: 240px;
   right: 20px;
   text-align: center;
   z-index: 999;
@@ -11,14 +11,14 @@
   background: none;
   border: none;
   font-size: 2.2rem;
-  color: #ffffff; /* ⬅️ မနှိပ်ခင် – အသဲအဖြူ */
+  color: #ffffff; /* ✅ မနှိပ်ခင် – အသဲဖြူ */
   cursor: pointer;
   transition: color 0.3s;
-  filter: drop-shadow(0 0 1px #000);
+  filter: drop-shadow(0 0 1px #000); /* ✅ အဖြူကိုမြင်အောင်အနက်နား shadow */
 }
 
 .like-button.liked {
-  color: #fe2c55; /* ⬅️ နှိပ်ပြီး – TikTok-style နီ */
+  color: #fe2c55; /* ✅ နှိပ်ပြီး – TikTok-style နီ */
   cursor: default;
 }
 
