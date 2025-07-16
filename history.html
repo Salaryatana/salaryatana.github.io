@@ -2,14 +2,12 @@
 <html lang="my">  
 <head>  
   <meta charset="UTF-8" />  
-  <title>ℹ️ အကြောင်း | Salaryatana</title>  
+  <title>🕘 မှတ်တမ်း | Salaryatana</title>  
   <meta name="viewport" content="width=device-width, initial-scale=1" />  
-  <meta name="description" content="Salaryatana ၏အကြောင်းအရာ" />  
-  <meta name="keywords" content="Salaryatana, အကြောင်း, about, dhamma, mindfulness" />  
+  <meta name="description" content="Salaryatana ၏ မှတ်တမ်းအကြောင်းအရာ" />  
+  <meta name="keywords" content="Salaryatana, မှတ်တမ်း, history, dhamma, mindfulness" />  
 
-  <!-- ✅ Category bar CSS -->
-  <link rel="stylesheet" href="category-bar.css" />  
-  <!-- ✅ Dark mode CSS -->
+  <!-- ✅ External CSS -->
   <link rel="stylesheet" href="theme-darkmode.css" />  
 
   <style>  
@@ -20,10 +18,10 @@
       padding: 1rem;  
       max-width: 700px;  
       margin: auto;  
+      padding-bottom: 120px; /* nav space */
       transition: background-color 0.3s, color 0.3s;  
     }  
 
-    /* Index ပုံစံ heading/subtitle ဗီဘီ */
     h1 {  
       text-align: center;  
       font-size: 2rem;  
@@ -38,17 +36,57 @@
       margin-bottom: 1.5rem;  
     }  
 
-    /* Dark mode body */
+    /* ✅ Dark Mode */
     body.dark {  
       background-color: #1e1e1e;  
       color: #ddd;  
     }  
-
-    /* Dark mode heading/subtitle */
     body.dark h1,  
     body.dark p.subtitle {  
-      color: #f5c34d;  /* a lighter gold */  
+      color: #f5c34d;  
     }  
+
+    /* ✅ Category Bar - Fixed Bottom Style like index */
+    .category-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-top: 1px solid #ccc;
+      padding: 10px 0;
+      text-align: center;
+      z-index: 999;
+    }
+    .category-bar a {
+      margin: 0 10px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .category-bar a:hover {
+      text-decoration: underline;
+    }
+
+    /* ✅ Dark Mode for Category Bar */
+    body.dark .category-bar {
+      background: #1e1e1e;
+      border-top: 1px solid #444;
+    }
+
+    /* ✅ Toggle Button */
+    .dark-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #d4a017;
+    }
+    body.dark .dark-toggle {
+      color: #f5c34d;
+    }
   </style>  
 </head>  
 
@@ -57,18 +95,17 @@
   <!-- ✅ Dark Mode Toggle Button -->  
   <button onclick="toggleDarkMode()" class="dark-toggle">🌙☀️</button>  
 
-  <h1>ℹ️ Salaryatana ၏အကြောင်း</h1>  
-  <p class="subtitle">open Dhamma platform အကြောင်းအရာစုစည်းခြင်း</p>  
+  <h1>🕘 Salaryatana မှတ်တမ်း</h1>  
+  <p class="subtitle">သင်တင်ထားတဲ့အကြောင်းအရာများ သမိုင်းမှတ်တမ်းအဖြစ်</p>  
 
-  <p>  
-    Salaryatana သည် ဒေသနာများ၊ တရားပေးချက်များ၊ သုတေသန၊ မေးခွန်းဖြေခြင်းများ စုစည်းသည့် open Dhamma platform တစ်ခုဖြစ်သည်။  
-    အသုံးပြုသူများအနေဖြင့် မိမိတို့၏ စိတ်ပိုင်းဆိုင်ရာ တက်ကြွမှုအတွက် အသုံးချနိုင်သည်။  
-  </p>  
+  <p>
+    ဒီနေရာမှာ သင်ဖော်ပြခဲ့တဲ့ စာအုပ်ဖတ်မှု၊ မေးခွန်းမေးမှု၊ တရားနားထောင်မှု စတာတွေမှတ်တမ်းအဖြစ် ထည့်သွင်းပြသနိုင်ပါတယ်။
+  </p>
 
-  <!-- ✅ Category bar copied & styled like index -->
+  <!-- ✅ Fixed Bottom Category Bar -->  
   <nav class="category-bar">
     <a href="index.html" style="color:#d4a017;">🏠 ပင်မစာမျက်နှာ</a>
-    <a href="book.html"  style="color:#007bff;">📘 စာအုပ်</a>
+    <a href="book.html" style="color:#007bff;">📘 စာအုပ်</a>
     <a href="chat-json.html" style="color:#6f42c1;">🤖 မေးမြန်းရန်</a>
     <a href="history.html" style="color:#17a2b8;">🕘 မှတ်တမ်း</a>
     <a href="message.html" style="color:#28a745;">✉️ စာပို့ရန်</a>
