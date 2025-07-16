@@ -1,6 +1,7 @@
+/* ✅ TikTok-style Like Button */
 .like-box {
   position: fixed;
-  bottom: 240px;
+  bottom: 240px;  /* nav ထက်နည်းနည်းအပေါ် */
   right: 20px;
   text-align: center;
   z-index: 999;
@@ -10,12 +11,13 @@
   background: none;
   border: none;
   font-size: 2.4rem;
+  color: #ffffff; /* မနှိပ်သေးရင် – အဖြူအသဲ */
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: color 0.3s;
 }
 
-.like-button:hover {
-  transform: scale(1.2);
+.like-button.liked {
+  color: #fe2c55; /* နှိပ်ထားရင် – အနီ TikTok-style */
 }
 
 #like-count {
