@@ -1,10 +1,10 @@
 // like-button.js (Salaryatana project)
 
-// ✅ Firebase configuration (သင့် config အတိုင်းပြင်ပါ)
+// ✅ Firebase configuration (အသစ်ပြင်ပြီး version)
 const firebaseConfig = {
   apiKey: "AIzaSyA4A1nYZ4oaGbdkl2ZpNUyMu7nn7GE2QEY",
   authDomain: "salaryatana.firebaseapp.com",
-  databaseURL: "https://salaryatana-default-rtdb.firebaseio.com",
+  databaseURL: "https://salaryatana-8b9f5-default-rtdb.firebaseio.com", // ✅ URL ပြင်ပြီး
   projectId: "salaryatana",
   storageBucket: "salaryatana.appspot.com",
   messagingSenderId: "895626474447",
@@ -63,6 +63,8 @@ function loadLikes() {
   db.ref(likePath).once('value').then(snapshot => {
     const count = snapshot.val() || 0;
     updateUI(count);
+  }).catch(error => {
+    console.error("🔥 Load error:", error);
   });
 }
 
@@ -76,7 +78,7 @@ function incrementLike() {
     return current + 1;
   }, (error, committed, snapshot) => {
     if (error) {
-      console.error('Transaction failed:', error);
+      console.error('🔥 Transaction failed:', error);
     } else if (committed) {
       updateUI(snapshot.val());
       setUserLiked();
