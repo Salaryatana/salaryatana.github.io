@@ -13,7 +13,7 @@ const db = firebase.database();
 
 // ✅ DOM Elements
 const likePath = 'likes/book';
-const likeBtn = document.getElementById('like-button');
+const likeBtn = document.getElementById('like-btn');
 const likeCountSpan = document.getElementById('like-count');
 
 // ✅ Format like count
@@ -44,14 +44,10 @@ function unsetUserLiked() {
 // ✅ Update UI
 function updateUI(count) {
   likeCountSpan.textContent = formatCount(count);
-  if (hasUserLiked()) {
-    likeBtn.classList.add('liked');
-  } else {
-    likeBtn.classList.remove('liked');
-  }
+  likeBtn.textContent = hasUserLiked() ? "❤️" : "🤍";
 }
 
-// ✅ Load current likes
+// ✅ Load likes from Firebase
 function loadLikes() {
   db.ref(likePath).once('value').then(snapshot => {
     const count = snapshot.val() || 0;
@@ -59,32 +55,28 @@ function loadLikes() {
   });
 }
 
-// ✅ Toggle Like/Unlike
+// ✅ Toggle like/unlike like dark-mode logic
 function toggleLike() {
   const ref = db.ref(likePath);
   if (hasUserLiked()) {
     // Unlike
-    ref.transaction(current => {
-      return (current || 1) - 1;
-    }, (error, committed, snapshot) => {
+    ref.transaction(current => (current || 1) - 1, (error, committed, snapshot) => {
       if (committed) {
-        updateUI(snapshot.val());
         unsetUserLiked();
+        updateUI(snapshot.val());
       }
     });
   } else {
     // Like
-    ref.transaction(current => {
-      return (current || 0) + 1;
-    }, (error, committed, snapshot) => {
+    ref.transaction(current => (current || 0) + 1, (error, committed, snapshot) => {
       if (committed) {
-        updateUI(snapshot.val());
         setUserLiked();
+        updateUI(snapshot.val());
       }
     });
   }
 }
 
-// ✅ Event Bindings
+// ✅ Events
 likeBtn.addEventListener('click', toggleLike);
 window.addEventListener('DOMContentLoaded', loadLikes);
