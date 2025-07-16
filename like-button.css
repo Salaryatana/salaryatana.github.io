@@ -1,7 +1,7 @@
 /* ✅ TikTok-style Like Button */
 .like-box {
   position: fixed;
-  bottom: 180px; /* ✅ nav ထက်အပေါ် */
+  bottom: 300px; /* ✅ nav ထက်အပေါ် */
   right: 20px;
   text-align: center;
   z-index: 999;
