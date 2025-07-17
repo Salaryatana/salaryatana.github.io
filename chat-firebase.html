@@ -1,14 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="my">
 <head>
   <meta charset="UTF-8" />
-  <title>Salaryatana Group Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>💬 Salaryatana Group Chat</title>
+
+  <!-- ✅ Dark Mode CSS -->
+  <link rel="stylesheet" href="theme-darkmode.css" />
+
   <style>
     body {
-      font-family: sans-serif;
+      font-family: "Myanmar Text", sans-serif;
       background: #f5f5f5;
       padding: 20px;
+      padding-bottom: 120px;
+      color: #333;
     }
+
+    h2 {
+      color: #d4a017;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
     #chat-box {
       border: 1px solid #ccc;
       height: 300px;
@@ -17,14 +31,132 @@
       background: #fff;
       margin-bottom: 10px;
     }
+
     input[type="text"] {
       width: 70%;
       padding: 8px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
     }
+
     button {
       padding: 8px 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-left: 10px;
+      background-color: #d4a017;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #b18f09;
+    }
+
+    /* Dark mode toggle button */
+    .dark-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: none; /* ဖျောက်ထား */
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1000;
+      color: #d4a017;
+      outline: none;
+    }
+
+    /* Fixed bottom category bar */
+    nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-top: 1px solid #ccc;
+      padding: 10px 0;
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #d4a017;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background: #121212;
+      color: #f0e68c;
+    }
+
+    body.dark-mode #chat-box {
+      background: #1e1e1e;
+      border-color: #555;
+      color: #eee;
+    }
+
+    body.dark-mode input[type="text"] {
+      background: #2c2c2c;
+      color: #eee;
+      border-color: #555;
+    }
+
+    body.dark-mode button {
+      background-color: #f7ca18;
+      color: #222;
+    }
+
+    body.dark-mode nav {
+      background: #1a1a1a;
+      border-color: #555;
+    }
+
+    body.dark-mode nav a {
+      color: #f7ca18;
+    }
+
+    body.dark-mode .dark-toggle {
+      color: #f7ca18;
     }
   </style>
+</head>
+<body>
+
+  <!-- ✅ Dark Mode Toggle Button -->
+  <button class="dark-toggle" onclick="toggleDarkMode()">🌙</button>
+
+  <h2>💬 Salaryatana Group Chat</h2>
+
+  <div id="chat-box"></div>
+
+  <form id="chat-form">
+    <input id="chat-input" type="text" placeholder="Type your message..." autocomplete="off" />
+    <button type="submit">Send</button>
+  </form>
+
+  <!-- ✅ Bottom Category Bar -->
+  <nav>
+    <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
+    <a href="book.html">📘 စာအုပ်</a>
+    <a href="chat-json.html">🤖 မေးခွန်းမေး</a>
+    <a href="history.html">🕘 မှတ်တမ်း</a>
+    <a href="message.html">✉️ စာပို့</a>
+  </nav>
+
+  <!-- ✅ Firebase & Chat Logic -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
@@ -67,15 +199,25 @@
         msg.textContent = doc.data().text;
         box.appendChild(msg);
       });
+      box.scrollTop = box.scrollHeight;
+    });
+
+    // Dark mode toggle logic
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      if(document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("darkMode", "enabled");
+      } else {
+        localStorage.setItem("darkMode", "disabled");
+      }
+    }
+
+    // Load saved mode on start
+    window.addEventListener("DOMContentLoaded", () => {
+      if(localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+      }
     });
   </script>
-</head>
-<body>
-  <h2>💬 Salaryatana Group Chat</h2>
-  <div id="chat-box"></div>
-  <form id="chat-form">
-    <input id="chat-input" type="text" placeholder="Type your message..." />
-    <button type="submit">Send</button>
-  </form>
 </body>
-  </html>
+</html>
