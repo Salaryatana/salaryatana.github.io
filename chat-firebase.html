@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>💬 Salaryatana Group Chat</title>
+  <title>💬 Salaryatana Chatbot</title>
 
   <!-- ✅ Dark Mode CSS -->
   <link rel="stylesheet" href="theme-darkmode.css" />
@@ -11,67 +11,59 @@
   <style>
     body {
       font-family: "Myanmar Text", sans-serif;
-      background: #f5f5f5;
+      background-color: #fff;
+      color: #d4a017;
+      margin: 0;
       padding: 20px;
       padding-bottom: 120px;
-      color: #333;
-    }
-
-    h2 {
-      color: #d4a017;
       text-align: center;
-      margin-bottom: 15px;
     }
 
-    #chat-box {
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    #chatbox {
       border: 1px solid #ccc;
+      background: #fff;
+      padding: 10px;
       height: 300px;
       overflow-y: scroll;
-      padding: 10px;
-      background: #fff;
       margin-bottom: 10px;
     }
 
-    input[type="text"] {
+    input {
       width: 70%;
       padding: 8px;
       font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      outline: none;
     }
 
     button {
       padding: 8px 12px;
       font-size: 1rem;
-      cursor: pointer;
-      margin-left: 10px;
-      background-color: #d4a017;
-      border: none;
-      border-radius: 4px;
-      color: white;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #b18f09;
+      margin-top: 5px;
     }
 
-    /* Dark mode toggle button */
-    .dark-toggle {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background: none; /* ဖျောက်ထား */
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 1000;
-      color: #d4a017;
-      outline: none;
+    .toggle-container {
+      text-align: right;
+      margin-bottom: 10px;
     }
 
-    /* Fixed bottom category bar */
+    /* ✅ Dark mode toggle button background ဖျောက် */
+    .toggle-container button {
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 0;
+      margin: 0;
+      color: inherit;
+    }
+
+    /* ✅ Fixed Bottom Navigation Bar */
     nav {
       position: fixed;
       bottom: 0;
@@ -81,143 +73,73 @@
       border-top: 1px solid #ccc;
       padding: 10px 0;
       z-index: 999;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
     }
 
     nav a {
+      margin: 0 10px;
       color: #d4a017;
       font-weight: bold;
       text-decoration: none;
-      font-size: 1rem;
     }
+
     nav a:hover {
       text-decoration: underline;
-    }
-
-    /* Dark mode styles */
-    body.dark-mode {
-      background: #121212;
-      color: #f0e68c;
-    }
-
-    body.dark-mode #chat-box {
-      background: #1e1e1e;
-      border-color: #555;
-      color: #eee;
-    }
-
-    body.dark-mode input[type="text"] {
-      background: #2c2c2c;
-      color: #eee;
-      border-color: #555;
-    }
-
-    body.dark-mode button {
-      background-color: #f7ca18;
-      color: #222;
-    }
-
-    body.dark-mode nav {
-      background: #1a1a1a;
-      border-color: #555;
-    }
-
-    body.dark-mode nav a {
-      color: #f7ca18;
-    }
-
-    body.dark-mode .dark-toggle {
-      color: #f7ca18;
     }
   </style>
 </head>
 <body>
 
   <!-- ✅ Dark Mode Toggle Button -->
-  <button class="dark-toggle" onclick="toggleDarkMode()">🌙</button>
+  <div class="toggle-container">
+    <button onclick="toggleDarkMode()">🌙</button>
+  </div>
 
-  <h2>💬 Salaryatana Group Chat</h2>
+  <h1>💬 မေးမြန်းပါ – Salaryatana Chatbot</h1>
 
-  <div id="chat-box"></div>
+  <div id="chatbox"></div>
 
-  <form id="chat-form">
-    <input id="chat-input" type="text" placeholder="Type your message..." autocomplete="off" />
-    <button type="submit">Send</button>
-  </form>
+  <input id="userInput" placeholder="မေးရန်..." />
+  <button onclick="sendMessage()">Send</button>
 
-  <!-- ✅ Bottom Category Bar -->
+  <!-- ✅ Category Navigation -->
   <nav>
     <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
     <a href="book.html">📘 စာအုပ်</a>
     <a href="chat-json.html">🤖 မေးခွန်းမေး</a>
     <a href="history.html">🕘 မှတ်တမ်း</a>
     <a href="message.html">✉️ စာပို့</a>
+    <a href="about.html">ℹ️ အကြောင်း</a>
   </nav>
 
-  <!-- ✅ Firebase & Chat Logic -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  <!-- ✅ Dark Mode JS -->
+  <script src="theme-darkmode.js"></script>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyDU8KyzG6P2zGYs4Pk02yz5SZhKa296m8s",
-      authDomain: "salaryatana-8b9f5.firebaseapp.com",
-      projectId: "salaryatana-8b9f5",
-      storageBucket: "salaryatana-8b9f5.firebasestorage.app",
-      messagingSenderId: "764193108668",
-      appId: "1:764193108668:web:ec9bec4c0e4891366f16b9",
-      measurementId: "G-0KN4Z83CNG"
-    };
+  <!-- ✅ Simple Chatbot Script -->
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const chatbox = document.getElementById("chatbox");
+      const userText = input.value.trim();
+      if (!userText) return;
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+      const userDiv = document.createElement("div");
+      userDiv.textContent = "👤 " + userText;
+      chatbox.appendChild(userDiv);
 
-    const messagesRef = collection(db, "messages");
+      const botDiv = document.createElement("div");
+      botDiv.textContent = "🤖 " + getBotReply(userText);
+      chatbox.appendChild(botDiv);
 
-    const form = document.getElementById("chat-form");
-    const input = document.getElementById("chat-input");
-    const box = document.getElementById("chat-box");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const text = input.value.trim();
-      if (!text) return;
-      await addDoc(messagesRef, {
-        text,
-        time: Date.now()
-      });
       input.value = "";
-    });
-
-    const q = query(messagesRef, orderBy("time"));
-    onSnapshot(q, (snapshot) => {
-      box.innerHTML = "";
-      snapshot.forEach((doc) => {
-        const msg = document.createElement("div");
-        msg.textContent = doc.data().text;
-        box.appendChild(msg);
-      });
-      box.scrollTop = box.scrollHeight;
-    });
-
-    // Dark mode toggle logic
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-      if(document.body.classList.contains("dark-mode")) {
-        localStorage.setItem("darkMode", "enabled");
-      } else {
-        localStorage.setItem("darkMode", "disabled");
-      }
+      chatbox.scrollTop = chatbox.scrollHeight;
     }
 
-    // Load saved mode on start
-    window.addEventListener("DOMContentLoaded", () => {
-      if(localStorage.getItem("darkMode") === "enabled") {
-        document.body.classList.add("dark-mode");
-      }
-    });
+    function getBotReply(input) {
+      const lower = input.toLowerCase();
+      if (lower.includes("မင်္ဂလာပါ")) return "မင်္ဂလာပါခင်ဗျာ။";
+      if (lower.includes("နာမည်")) return "ကျွန်တော်က Salaryatana chatbot ဖြစ်ပါတယ်။";
+      return "သေချာမသိရသေးပါ... ပြန်မေးပေးပါ။";
+    }
   </script>
 </body>
 </html>
