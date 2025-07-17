@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>📘 စာအုပ် | Salaryatana</title>
   <style>
+    body {
+      margin: 0;
+      font-family: "Myanmar Text", sans-serif;
+    }
+
     /* ✅ Wrapper for toggle */
-    .comment-toggle-wrapper {
+    .comment-wrapper {
       position: fixed;
       bottom: 240px;
       right: 20px;
@@ -15,11 +20,11 @@
     }
 
     /* ✅ Toggle Button */
-    .comment-toggle-wrapper input[type="checkbox"] {
+    .comment-wrapper input[type="checkbox"] {
       display: none;
     }
 
-    .comment-toggle-wrapper label {
+    .comment-wrapper label {
       font-size: 2.2rem;
       color: #ffffff;
       cursor: pointer;
@@ -28,7 +33,7 @@
     }
 
     /* ✅ Comment Section Default Hidden */
-    #comment-section {
+    .comment-wrapper #comment-section {
       display: none;
       position: fixed;
       bottom: 80px;
@@ -46,7 +51,7 @@
     }
 
     /* ✅ Show Comment Section When Checkbox Checked */
-    .comment-toggle-wrapper input[type="checkbox"]:checked ~ #comment-section {
+    .comment-wrapper input[type="checkbox"]:checked + label + #comment-section {
       display: block;
     }
 
@@ -63,11 +68,10 @@
 </head>
 <body>
 
-  <!-- ✅ Toggle and Comment Section Wrapper -->
-  <div class="comment-toggle-wrapper">
+  <!-- ✅ Toggle and Comment Section Correctly Ordered -->
+  <div class="comment-wrapper">
     <input type="checkbox" id="toggle-comment" />
     <label for="toggle-comment">💬</label>
-
     <div id="comment-section">
       <div class="comment">🧘 သတိပြုခဲ့သူ ၁</div>
       <div class="comment">🙏 အကြံပြုချက် တင်သွင်းခဲ့သည်။</div>
