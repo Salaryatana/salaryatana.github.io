@@ -24,17 +24,21 @@
       color: #333;
       transition: background-color 0.3s, color 0.3s;
     }
+
     body.dark {
       background-color: #121212;
       color: #eee;
     }
+
     h1 {
       text-align: center;
       color: #d4a017;
     }
+
     body.dark h1 {
       color: #f5c34d;
     }
+
     #messages {
       border: 1px solid #ccc;
       background: #fff;
@@ -46,29 +50,36 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       color: #333;
     }
+
     body.dark #messages {
       background: #1e1e1e;
       color: #ddd;
       border-color: #444;
     }
+
     .message {
       margin-bottom: 10px;
       padding-bottom: 6px;
       border-bottom: 1px solid #ddd;
     }
+
     body.dark .message {
       border-bottom: 1px solid #444;
     }
+
     .name {
       font-weight: bold;
     }
+
     .time {
       font-size: 0.8rem;
       color: #999;
     }
+
     body.dark .time {
       color: #aaa;
     }
+
     input[type="text"] {
       font-size: 1rem;
       padding: 10px;
@@ -77,11 +88,13 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
+
     body.dark input[type="text"] {
       background-color: #2a2a2a;
       color: #eee;
       border: 1px solid #555;
     }
+
     button {
       font-size: 1rem;
       padding: 10px 15px;
@@ -89,12 +102,24 @@
       border: none;
       border-radius: 4px;
       cursor: pointer;
-      background-color: #8bc34a;
-      color: white;
+      background-color: #ccc; /* ✅ Neutral color */
+      color: #000;
+      transition: background-color 0.2s;
     }
+
     button:hover {
-      background-color: #689f38;
+      background-color: #bbb;
     }
+
+    body.dark button {
+      background-color: #444;
+      color: #fff;
+    }
+
+    body.dark button:hover {
+      background-color: #555;
+    }
+
     .delete-btn {
       background-color: transparent;
       border: none;
@@ -115,18 +140,33 @@
       text-align: center;
       z-index: 999;
     }
+
     .category-bar a {
       margin: 0 10px;
       font-weight: bold;
       text-decoration: none;
       color: #d4a017;
     }
+
     .category-bar a:hover {
       text-decoration: underline;
     }
+
     body.dark .category-bar {
       background: #1e1e1e;
       border-top: 1px solid #444;
+    }
+
+    /* ✅ Dark Mode Toggle */
+    .dark-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
     }
   </style>
 </head>
