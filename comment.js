@@ -1,7 +1,11 @@
 fetch('comments.json')
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok) throw new Error('Network response was not OK');
+    return response.json();
+  })
   .then(data => {
     const container = document.getElementById('comment-section');
+    container.innerHTML = ''; // Clear previous content
 
     for (const [bookId, comments] of Object.entries(data.comments)) {
       const bookDiv = document.createElement('div');
@@ -12,6 +16,7 @@ fetch('comments.json')
       bookDiv.appendChild(bookTitle);
 
       for (const cmtKey in comments) {
+        if (!comments.hasOwnProperty(cmtKey)) continue;
         const comment = comments[cmtKey];
 
         const cmtDiv = document.createElement('div');
@@ -19,6 +24,7 @@ fetch('comments.json')
 
         const name = document.createElement('strong');
         name.textContent = comment.name + ': ';
+
         const msg = document.createElement('span');
         msg.textContent = comment.message;
 
@@ -30,6 +36,7 @@ fetch('comments.json')
         cmtDiv.appendChild(name);
         cmtDiv.appendChild(msg);
         cmtDiv.appendChild(time);
+
         bookDiv.appendChild(cmtDiv);
       }
 
@@ -38,4 +45,6 @@ fetch('comments.json')
   })
   .catch(error => {
     console.error('Error loading comments:', error);
+    const container = document.getElementById('comment-section');
+    container.innerHTML = `<p style="color:red;">မှတ်ချက်များ ဖတ်ရှုရန် အမှားတစ်ခု ဖြစ်ပွားခဲ့သည်။</p>`;
   });
