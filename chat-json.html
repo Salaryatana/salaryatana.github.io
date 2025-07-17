@@ -3,130 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>💬 Salaryatana Chatbot</title>
-
-  <!-- ✅ Dark Mode CSS -->
-  <link rel="stylesheet" href="theme-darkmode.css" />
-
+  <title>📘 စာအုပ် | Salaryatana</title>
+  <link rel="stylesheet" href="theme-darkmode.css">
   <style>
     body {
       font-family: "Myanmar Text", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .category-bar {
       background-color: #fff;
       color: #d4a017;
-      margin: 0;
-      padding: 20px;
-      padding-bottom: 120px;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    #chatbox {
-      border: 1px solid #ccc;
-      background: #fff;
       padding: 10px;
-      height: 300px;
-      overflow-y: scroll;
-      margin-bottom: 10px;
-    }
-
-    input {
-      width: 70%;
-      padding: 8px;
-      font-size: 1rem;
-    }
-
-    button {
-      padding: 8px 12px;
-      font-size: 1rem;
-      margin-top: 5px;
-    }
-
-    .toggle-container {
-      text-align: right;
-      margin-bottom: 10px;
-    }
-
-    /* ✅ Fixed Bottom Navigation Bar */
-    nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
       position: fixed;
       bottom: 0;
-      left: 0;
       width: 100%;
-      background: #fff;
-      border-top: 1px solid #ccc;
-      padding: 10px 0;
       z-index: 999;
     }
 
-    nav a {
-      margin: 0 10px;
+    .category-bar a {
+      text-decoration: none;
       color: #d4a017;
       font-weight: bold;
-      text-decoration: none;
     }
 
-    nav a:hover {
-      text-decoration: underline;
+    /* Dark mode support */
+    body.dark .category-bar {
+      background-color: #111;
+      color: #f9e79f;
+    }
+
+    body.dark .category-bar a {
+      color: #f9e79f;
+    }
+
+    .dark-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1000;
+      background: none; /* ✅ ဖျောက်လိုက်တာ */
     }
   </style>
 </head>
 <body>
+  <button class="dark-toggle" onclick="toggleDarkMode()">🌙</button>
 
-  <!-- ✅ Dark Mode Toggle Button -->
-  <div class="toggle-container">
-    <button onclick="toggleDarkMode()">🌙</button>
+  <div style="padding: 20px; padding-bottom: 80px;">
+    <h1>📘 စာအုပ် | Salaryatana</h1>
+    <p>ဤစာမျက်နှာသည် dark mode နှင့် category bar ပါဝင်သောနမူနာဖြစ်သည်။</p>
   </div>
 
-  <h1>💬 မေးမြန်းပါ – Salaryatana Chatbot</h1>
-
-  <div id="chatbox"></div>
-
-  <input id="userInput" placeholder="မေးရန်..." />
-  <button onclick="sendMessage()">Send</button>
-
-  <!-- ✅ Category Navigation -->
   <nav>
-    <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
-    <a href="book.html">📘 စာအုပ်</a>
-    <a href="chat-json.html">🤖 မေးခွန်းမေး</a>
-    <a href="history.html">🕘 မှတ်တမ်း</a>
-    <a href="message.html">✉️ စာပို့</a>
-    <a href="about.html">ℹ️ အကြောင်း</a>
+    <div class="category-bar">
+      <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
+      <a href="book.html">📘 စာအုပ်</a>
+      <a href="chat-json.html">🤖 မေးခွန်းမေး</a>
+      <a href="history.html">🕘 မှတ်တမ်း</a>
+      <a href="message.html">✉️ စာပို့</a>
+    </div>
   </nav>
 
-  <!-- ✅ Dark Mode JS -->
   <script src="theme-darkmode.js"></script>
-
-  <!-- ✅ Simple Chatbot Script -->
-  <script>
-    function sendMessage() {
-      const input = document.getElementById("userInput");
-      const chatbox = document.getElementById("chatbox");
-      const userText = input.value.trim();
-      if (!userText) return;
-
-      const userDiv = document.createElement("div");
-      userDiv.textContent = "👤 " + userText;
-      chatbox.appendChild(userDiv);
-
-      const botDiv = document.createElement("div");
-      botDiv.textContent = "🤖 " + getBotReply(userText);
-      chatbox.appendChild(botDiv);
-
-      input.value = "";
-      chatbox.scrollTop = chatbox.scrollHeight;
-    }
-
-    function getBotReply(input) {
-      const lower = input.toLowerCase();
-      if (lower.includes("မင်္ဂလာပါ")) return "မင်္ဂလာပါခင်ဗျာ။";
-      if (lower.includes("နာမည်")) return "ကျွန်တော်က Salaryatana chatbot ဖြစ်ပါတယ်။";
-      return "သေချာမသိရသေးပါ... ပြန်မေးပေးပါ။";
-    }
-  </script>
 </body>
 </html>
