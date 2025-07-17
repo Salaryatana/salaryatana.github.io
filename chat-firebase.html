@@ -26,17 +26,22 @@
     }
 
     .darkmode-toggle-wrapper button {
-      background: transparent;
-      border: none;
+      background-color: transparent !important; /* ✅ Remove green bg */
+      border: none !important;
       font-size: 24px;
       cursor: pointer;
       padding: 10px;
       border-radius: 10px;
       color: var(--text-color);
+      box-shadow: none !important;
     }
 
+    .darkmode-toggle-wrapper button:hover,
+    .darkmode-toggle-wrapper button:active,
     .darkmode-toggle-wrapper button:focus {
-      outline: none;
+      background-color: transparent !important; /* ✅ Stay transparent on click */
+      box-shadow: none !important;
+      outline: none !important;
     }
 
     h1, p {
