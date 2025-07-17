@@ -7,11 +7,12 @@
   text-align: center;
 }
 
-/* ✅ Toggle Button */
+/* ✅ Toggle Button (Hidden Checkbox) */
 .comment-toggle-wrapper input[type="checkbox"] {
   display: none;
 }
 
+/* ✅ Toggle Label (💬 Icon) */
 .comment-toggle-wrapper label {
   font-size: 2.2rem;
   color: #ffffff;
@@ -20,12 +21,17 @@
   display: inline-block;
 }
 
-/* ✅ Comment Section Default Hidden */
+/* ✅ Default: Hide Comment Section */
 #comment-section {
   display: none;
+  max-width: 700px;
+  margin: 20px auto 120px auto;
+  padding: 10px;
+  font-family: "Myanmar Text", sans-serif;
+  color: inherit;
 }
 
 /* ✅ Show Comment Section When Checkbox Checked */
-.comment-toggle-wrapper input[type="checkbox"]:checked ~ #comment-section {
+#toggle-comment:checked ~ #comment-section {
   display: block;
 }
