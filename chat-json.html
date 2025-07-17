@@ -1,15 +1,104 @@
 <!DOCTYPE html>
 <html lang="my">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>💬 Salaryatana Chatbot</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="theme-darkmode.css" />
+  <style>
+    body {
+      font-family: "Myanmar Text", sans-serif;
+      margin: 0;
+      padding: 0 10px 60px;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    #chatbox {
+      border: 1px solid #ccc;
+      background: var(--card);
+      padding: 10px;
+      height: 300px;
+      overflow-y: scroll;
+      margin-bottom: 15px;
+    }
+
+    input#userInput {
+      width: 75%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      background: var(--input);
+      color: var(--text);
+    }
+
+    button {
+      padding: 8px 12px;
+      background-color: var(--button);
+      color: var(--button-text);
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .category-bar {
+      background-color: var(--nav);
+      color: var(--nav-text);
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      font-size: 14px;
+    }
+
+    .category-bar a {
+      text-decoration: none;
+      color: var(--nav-text);
+    }
+
+    .category-bar a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
+  <!-- ✅ Header for Dark Mode -->
+  <div id="header-container"></div>
+  <script>
+    fetch("header-darkmode.html")
+      .then(res => res.text())
+      .then(html => document.getElementById("header-container").innerHTML = html);
+  </script>
+
+  <!-- ✅ Chatbot UI -->
   <h1>💬 မေးမြန်းပါ – Salaryatana Chatbot</h1>
-  <div id="chatbox" style="border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll;"></div>
-  <input id="userInput" placeholder="မေးရန်..." style="width: 80%; padding: 8px;" />
-  <button onclick="sendMessage()" style="padding: 8px 12px;">Send</button>
+  <div id="chatbox"></div>
+  <input id="userInput" placeholder="မေးရန်..." />
+  <button onclick="sendMessage()">Send</button>
+
+  <!-- ✅ Category Bar -->
+  <nav>
+    <div class="category-bar">
+      <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
+      <a href="book.html">📘 စာအုပ်</a>
+      <a href="chat-json.html">🤖 မေးခွန်းမေး</a>
+      <a href="history.html">🕘 မှတ်တမ်း</a>
+      <a href="message.html">✉️ စာပို့</a>
+    </div>
+  </nav>
+
   <script src="chatbot.js"></script>
 </body>
-</html>
+    </html>
