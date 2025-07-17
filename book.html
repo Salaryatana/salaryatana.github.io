@@ -1,214 +1,50 @@
-<!DOCTYPE html>
-<html lang="my">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>📘 စာအုပ် | Salaryatana</title>
+fetch('comments.json')
+  .then(response => {
+    if (!response.ok) throw new Error('Network response was not OK');
+    return response.json();
+  })
+  .then(data => {
+    const container = document.getElementById('comment-section');
+    container.innerHTML = ''; // Clear previous content
 
-  <!-- ✅ Style -->
-  <link rel="stylesheet" href="comment.css" />
-  <style>
-    body {
-      font-family: "Myanmar Text", sans-serif;
-      background-color: #fff;
-      color: #d4a017;
-      margin: 0;
-      padding: 20px;
-      padding-bottom: 240px;
-      transition: background-color 0.3s, color 0.3s;
-    }
+    for (const [bookId, comments] of Object.entries(data.comments)) {
+      const bookDiv = document.createElement('div');
+      bookDiv.className = 'book-comments';
 
-    h1 {
-      text-align: center;
-    }
+      const bookTitle = document.createElement('h3');
+      bookTitle.textContent = `📘 ${bookId}`;
+      bookDiv.appendChild(bookTitle);
 
-    .book-list {
-      max-width: 700px;
-      margin: 0 auto;
-    }
+      for (const cmtKey in comments) {
+        if (!comments.hasOwnProperty(cmtKey)) continue;
+        const comment = comments[cmtKey];
 
-    .book-list a {
-      display: block;
-      margin: 10px 0;
-      color: #d4a017;
-      text-decoration: none;
-      font-weight: bold;
-      border: 1px solid #d4a017;
-      padding: 10px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
+        const cmtDiv = document.createElement('div');
+        cmtDiv.className = 'comment';
 
-    .book-list a:hover {
-      background-color: #d4a017;
-      color: #fff;
-    }
+        const name = document.createElement('strong');
+        name.textContent = comment.name + ': ';
 
-    nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #fff;
-      border-top: 1px solid #ccc;
-      padding: 10px 0;
-      text-align: center;
-      z-index: 999;
-    }
+        const msg = document.createElement('span');
+        msg.textContent = comment.message;
 
-    nav a {
-      margin: 0 10px;
-      color: #d4a017;
-      font-weight: bold;
-      text-decoration: none;
-    }
+        const time = document.createElement('div');
+        time.className = 'timestamp';
+        const date = new Date(comment.timestamp);
+        time.textContent = `🕒 ${date.toLocaleString()}`;
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+        cmtDiv.appendChild(name);
+        cmtDiv.appendChild(msg);
+        cmtDiv.appendChild(time);
 
-    .dark-toggle {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background: transparent;
-      border: none;
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      font-size: 24px;
-      cursor: pointer;
-      color: #fff;
-      z-index: 1000;
-    }
-
-    body.dark-mode {
-      background-color: #121212;
-      color: #f9d71c;
-    }
-
-    body.dark-mode .book-list a {
-      border-color: #f9d71c;
-      color: #f9d71c;
-    }
-
-    body.dark-mode .book-list a:hover {
-      background-color: #f9d71c;
-      color: #000;
-    }
-
-    body.dark-mode nav {
-      background-color: #1f1f1f;
-      border-top-color: #444;
-    }
-
-    body.dark-mode nav a {
-      color: #f9d71c;
-    }
-
-    /* ✅ Like Button */
-    .like-box {
-      position: fixed;
-      bottom: 240px;
-      right: 20px;
-      text-align: center;
-      z-index: 999;
-    }
-
-    .like-button {
-      background: none;
-      border: none;
-      font-size: 2.2rem;
-      color: #ffffff;
-      cursor: pointer;
-      transition: color 0.3s;
-      filter: drop-shadow(0 0 1px #000);
-    }
-
-    .like-button.liked {
-      color: #fe2c55;
-    }
-
-    #like-count {
-      display: block;
-      font-size: 0.9rem;
-      color: #d4a017;
-      margin-top: 5px;
-    }
-  </style>
-</head>
-<body>
-  <!-- ✅ Dark Mode Toggle -->
-  <button onclick="toggleDarkMode()" class="dark-toggle" id="darkToggleBtn">🌙</button>
-
-  <h1>📘 စာအုပ်စာရင်း</h1>
-  <div class="book-list">
-    <a href="#" target="_blank">Version 3 - နောက်ဆုံးပြင်ဆင်မှု</a>
-    <a href="#" target="_blank">Version များအားလုံး</a>
-    <a href="#">📖 စာအုပ် ဖတ်ရန် (Coming Soon)</a>
-  </div>
-
-  <!-- ✅ TikTok-style Like Button -->
-  <div class="like-box">
-    <button class="like-button" id="like-button">💛</button>
-    <span id="like-count">0</span>
-  </div>
-
-  <!-- ✅ Comment Box -->
-  <div id="comment-section">
-    <h3>💬 မှတ်ချက်များ</h3>
-    <input type="text" id="username" placeholder="အမည်" />
-    <textarea id="commentInput" placeholder="မှတ်ချက်ရေးပါ..."></textarea>
-    <button onclick="postComment()">✍️ မှတ်ချက်ရေးမယ်</button>
-    <ul id="commentList"></ul>
-  </div>
-
-  <!-- ✅ Bottom Nav -->
-  <nav>
-    <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
-    <a href="book.html">📘 စာအုပ်</a>
-    <a href="chat-json.html">🤖 မေးခွန်းမေး</a>
-    <a href="history.html">🕘 မှတ်တမ်း</a>
-    <a href="message.html">✉️ စာပို့ရန်</a>
-    <a href="about.html">ℹ️ အကြောင်း</a>
-  </nav>
-
-  <!-- ✅ Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
-  <!-- ✅ Like Button Script -->
-  <script src="like-button.js"></script>
-
-  <!-- ✅ Comment Script -->
-  <script src="comment.js"></script>
-
-  <!-- ✅ Dark Mode Script -->
-  <script>
-    function toggleDarkMode() {
-      const body = document.body;
-      const btn = document.getElementById("darkToggleBtn");
-      body.classList.toggle("dark-mode");
-
-      if (body.classList.contains("dark-mode")) {
-        btn.textContent = "☀️";
-        localStorage.setItem("darkMode", "enabled");
-      } else {
-        btn.textContent = "🌙";
-        localStorage.setItem("darkMode", "disabled");
+        bookDiv.appendChild(cmtDiv);
       }
-    }
 
-    window.addEventListener("DOMContentLoaded", () => {
-      const darkModeSetting = localStorage.getItem("darkMode");
-      const btn = document.getElementById("darkToggleBtn");
-      if (darkModeSetting === "enabled") {
-        document.body.classList.add("dark-mode");
-        btn.textContent = "☀️";
-      } else {
-        btn.textContent = "🌙";
-      }
-    });
-  </script>
-</body>
-</html>
+      container.appendChild(bookDiv);
+    }
+  })
+  .catch(error => {
+    console.error('Error loading comments:', error);
+    const container = document.getElementById('comment-section');
+    container.innerHTML = `<p style="color:red;">မှတ်ချက်များ ဖတ်ရှုရန် အမှားတစ်ခု ဖြစ်ပွားခဲ့သည်။</p>`;
+  });
