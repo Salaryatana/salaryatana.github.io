@@ -135,6 +135,17 @@
       color: #d4a017;
       margin-top: 5px;
     }
+
+    /* ✅ Comment Section: Positioned below Like Button */
+    #comment-section {
+      max-width: 700px;
+      margin: 20px auto 120px auto; /* bottom margin so nav doesn't cover */
+      padding: 10px;
+      font-family: "Myanmar Text", sans-serif;
+      color: inherit;
+    }
+
+    /* Note: Actual styling for comment box comes from comment.css */
   </style>
 </head>
 <body>
@@ -154,7 +165,7 @@
     <span id="like-count">0</span>
   </div>
 
-  <!-- ✅ Comment Box -->
+  <!-- ✅ Comment Box (Below Like Button) -->
   <div id="comment-section">
     <h3>💬 မှတ်ချက်များ</h3>
     <input type="text" id="username" placeholder="အမည်" />
