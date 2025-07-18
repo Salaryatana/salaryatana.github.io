@@ -1,0 +1,14 @@
+/* stroke.css */
+.stroke-text {
+  font-size: 48px;
+  font-weight: bold;
+  color: #ffd700; /* အဝါရောင်စာလုံး */
+  -webkit-text-stroke: 1.5px black; /* default: light mode */
+  text-stroke: 1.5px black;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .stroke-text {
+  -webkit-text-stroke: 1.5px white;
+  text-stroke: 1.5px white;
+}
