@@ -1,0 +1,27 @@
+/* ✅ Share button wrapper (fixed position, below header) */
+.share-buttons-wrapper {
+  position: fixed;
+  top: 60px; /* ခေါင်းလောင်းအောက်မှာနေအောင် */
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+}
+
+/* ✅ Individual share button */
+.share-button {
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: white;
+  padding: 6px;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  filter: drop-shadow(0 0 1px black);
+}
+
+.share-button:hover {
+  transform: scale(1.2);
+}
