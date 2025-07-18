@@ -100,6 +100,16 @@
     body.dark-mode nav a {  
       color: #f9d71c;  
     }  
+    /* ✅ noti button style (like-button လိုတူအရွယ်၊ transparent) */
+    .noti-button {
+      background: transparent;
+      border: none;
+      font-size: 2.2rem;
+      color: #ffffff;
+      cursor: pointer;
+      transition: color 0.3s;
+      filter: drop-shadow(0 0 1px #000);
+    }
   
     /* ✅ Like Button */  
     .like-box {  
@@ -143,7 +153,7 @@
     <span id="like-count">0</span>
     
   <br />
-  <button onclick="alert('like အသဲ ပေးချင်ရင် VPN သုံးပြီး ပေးပါ')" style="margin-top: 10px; padding: 5px 10px; border: none;">🔔</button>
+  <button onclick="alert('like အသဲ ပေးချင်ရင် VPN သုံးပြီး ပေးပါ')" class="noti-button">🔔</button>
   </div>
   </div>    <!-- ✅ Bottom Nav -->    <nav>  
     <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>  
