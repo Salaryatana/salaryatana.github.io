@@ -1,40 +1,45 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const pageUrl = window.location.href;
+const currentLink = "https://salaryatana.netlify.app/book";
 
-  // Copy Link
-  document.getElementById("btn-copy").addEventListener("click", () => {
-    navigator.clipboard.writeText(pageUrl).then(() => {
-      alert("Link copied!");
-    });
-  });
+// Copy to clipboard
+document.getElementById("btn-copy").addEventListener("click", () => {
+  navigator.clipboard.writeText(currentLink);
+  alert("Link copied!");
+});
 
-  // Telegram
-  document.getElementById("btn-telegram").addEventListener("click", () => {
-    window.open(`https://t.me/share/url?url=${encodeURIComponent(pageUrl)}`, "_blank");
-  });
+// Telegram
+document.getElementById("btn-telegram").addEventListener("click", () => {
+  const url = `https://t.me/share/url?url=${encodeURIComponent(currentLink)}`;
+  window.open(url, "_blank");
+});
 
-  // Messenger
-  document.getElementById("btn-messenger").addEventListener("click", () => {
-    window.open(`fb-messenger://share?link=${encodeURIComponent(pageUrl)}`, "_blank");
-  });
+// Messenger
+document.getElementById("btn-messenger").addEventListener("click", () => {
+  const url = `fb-messenger://share/?link=${encodeURIComponent(currentLink)}`;
+  window.open(url, "_blank");
+});
 
-  // TikTok (open with system share, not official)
-  document.getElementById("btn-tiktok").addEventListener("click", () => {
-    alert("Please share manually in TikTok.");
-  });
+// TikTok (fallback copy)
+document.getElementById("btn-tiktok").addEventListener("click", () => {
+  navigator.clipboard.writeText(currentLink);
+  alert("TikTok doesn’t support direct share — Link copied!");
+});
 
-  // SMS / Message
-  document.getElementById("btn-message").addEventListener("click", () => {
-    window.location.href = `sms:?body=${encodeURIComponent(pageUrl)}`;
-  });
+// SMS Message
+document.getElementById("btn-message").addEventListener("click", () => {
+  const url = `sms:?body=${encodeURIComponent(currentLink)}`;
+  window.open(url);
+});
 
-  // Viber
-  document.getElementById("btn-viber").addEventListener("click", () => {
-    window.open(`viber://forward?text=${encodeURIComponent(pageUrl)}`, "_blank");
-  });
+// Viber
+document.getElementById("btn-viber").addEventListener("click", () => {
+  const url = `viber://forward?text=${encodeURIComponent(currentLink)}`;
+  window.location.href = url;
+});
 
-  // Gmail
-  document.getElementById("btn-gmail").addEventListener("click", () => {
-    window.open(`mailto:?subject=Check this out&body=${encodeURIComponent(pageUrl)}`, "_blank");
-  });
+// Gmail
+document.getElementById("btn-gmail").addEventListener("click", () => {
+  const subject = "Check this out!";
+  const body = `Here's a link: ${currentLink}`;
+  const url = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = url;
 });
