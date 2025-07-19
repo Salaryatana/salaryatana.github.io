@@ -1,0 +1,6 @@
+markdown: kramdown
+theme: minima
+
+collections:
+  books:
+    output: true
