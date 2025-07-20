@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="my">
+<!DOCTYPE html><html lang="my">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -168,16 +167,11 @@
     <a href="history.html">🕘 မှတ်တမ်း</a>
     <a href="message.html">✉️ စာပို့ရန်</a>
     <a href="about.html">ℹ️ အကြောင်း</a>
-  </nav>
-
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-  <script>
+  </nav>  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>  <script>
     const firebaseConfig = {
       apiKey: "AIzaSyA4A1nYZ4oaGbdkl2ZpNUyMu7nn7GE2QEY",
       authDomain: "salaryatana.firebaseapp.com",
-      databaseURL: "https://salaryatana.firebaseio.com", // ✅ Netlify မှာ VPN မလိုအောင် ပြင်ထား
+      databaseURL: "https://salaryatana.firebaseio.com",
       projectId: "salaryatana",
       storageBucket: "salaryatana.appspot.com",
       messagingSenderId: "895626474447",
@@ -244,10 +238,7 @@
     }
     likeBtn.addEventListener('click', toggleLike);
     window.addEventListener('DOMContentLoaded', loadLikes);
-  </script>
-
-  <!-- Dark Mode Script -->
-  <script>
+  </script>  <script>
     function toggleDarkMode() {
       const body = document.body;
       const btn = document.getElementById("darkToggleBtn");
@@ -259,23 +250,3 @@
         btn.textContent = "🌙";
         localStorage.setItem("darkMode", "disabled");
       }
-    }
-    window.addEventListener("DOMContentLoaded", () => {
-      const darkModeSetting = localStorage.getItem("darkMode");
-      const body = document.body;
-      const btn = document.getElementById("darkToggleBtn");
-      if (darkModeSetting === "enabled") {
-        body.classList.add("dark-mode");
-        btn.textContent = "☀️";
-      } else {
-        btn.textContent = "🌙";
-      }
-    });
-
-    function toggleBook() {
-      const img = document.getElementById("book-image");
-      img.style.display = img.style.display === "none" ? "block" : "none";
-    }
-  </script>
-</body>
-</html>
