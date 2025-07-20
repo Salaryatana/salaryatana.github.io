@@ -1,252 +1,285 @@
-<!DOCTYPE html><html lang="my">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title> 📘 စာအုပ် | Salaryatana</title>
-  <style>
-    body {
-      font-family: "Myanmar Text", sans-serif;
-      background-color: #fff;
-      color: #d4a017;
-      margin: 0;
-      padding: 20px;
-      padding-bottom: 120px;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    h1 {
-      position: absolute;
-      top: 15px;
-      left: 20px;
-      margin: 0;
-      font-size: 1.5rem;
-    }
-    .book-list {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .book-list a {
-      display: block;
-      margin: 10px 0;
-      color: #d4a017;
-      text-decoration: none;
-      font-weight: bold;
-      border: 1px solid #d4a017;
-      padding: 10px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-    .book-list a:hover {
-      background-color: #d4a017;
-      color: #fff;
-    }
-    nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #fff;
-      border-top: 1px solid #ccc;
-      padding: 10px 0;
-      text-align: center;
-      z-index: 999;
-    }
-    nav a {
-      margin: 0 10px;
-      color: #d4a017;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .dark-toggle {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background: transparent;
-      border: none;
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      font-size: 24px;
-      cursor: pointer;
-      color: #fff;
-      z-index: 1000;
-    }
-    body.dark-mode {
-      background-color: #121212;
-      color: #f9d71c;
-    }
-    body.dark-mode .book-list a {
-      border-color: #f9d71c;
-      color: #f9d71c;
-    }
-    body.dark-mode .book-list a:hover {
-      background-color: #f9d71c;
-      color: #000;
-    }
-    body.dark-mode nav {
-      background-color: #1f1f1f;
-      border-top-color: #444;
-    }
-    body.dark-mode nav a {
-      color: #f9d71c;
-    }
-    .noti-button {
-      background: transparent;
-      border: none;
-      font-size: 2.2rem;
-      color: #ffffff;
-      cursor: pointer;
-      transition: color 0.3s;
-      filter: drop-shadow(0 0 1px #000);
-      margin-top: -5px;
-    }
-    .like-box {
-      position: fixed;
-      bottom: 240px;
-      right: 20px;
-      text-align: center;
-      z-index: 999;
-    }
-    .like-button {
-      background: none;
-      border: none;
-      font-size: 2.2rem;
-      color: #ffffff;
-      cursor: pointer;
-      transition: color 0.3s;
-      filter: drop-shadow(0 0 1px #000);
-    }
-    .like-button.liked {
-      color: #fe2c55;
-    }
-    #like-count {
-      display: block;
-      font-size: 0.9rem;
-      color: #d4a017;
-      margin-top: 5px;
-    }
-    #show-book-btn {
-      position: absolute;
-      top: 15px;
-      left: 20px;
-      font-size: 1rem;
-      color: #d4a017;
-      border: none;
-      background: none;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    #book-image {
-      display: none;
-      margin-top: 70px;
-      max-width: 100%;
-      height: auto;
-    }
-  </style>
-</head>
-<body>
-  <button onclick="toggleDarkMode()" class="dark-toggle" id="darkToggleBtn">🌙</button>
-  <button id="show-book-btn" onclick="toggleBook()">📘 စာအုပ်</button>
-  <div style="text-align: center;">
-    <img id="book-image" src="https://salaryatana.netlify.app/image/bookcover.jpg" alt="Book Cover">
-  </div>
-  <h1></h1>
-  <div class="book-list"></div>
-  <div class="like-box">
-    <button class="like-button" id="like-button">💛</button>
-    <span id="like-count">0</span>
-    <br />
-    <button onclick="alert('like အသဲ ပေးချင်ရင် VPN သုံးပြီး ပေးပါ')" class="noti-button">🔔</button>
-  </div>
-  <nav>
-    <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
-    <a href="book.html">📘 စာအုပ်</a>
-    <a href="chat-json.html">🤖 မေးခွန်းမေး</a>
-    <a href="history.html">🕘 မှတ်တမ်း</a>
-    <a href="message.html">✉️ စာပို့ရန်</a>
-    <a href="about.html">ℹ️ အကြောင်း</a>
-  </nav>  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyA4A1nYZ4oaGbdkl2ZpNUyMu7nn7GE2QEY",
-      authDomain: "salaryatana.firebaseapp.com",
-      databaseURL: "https://salaryatana.firebaseio.com",
-      projectId: "salaryatana",
-      storageBucket: "salaryatana.appspot.com",
-      messagingSenderId: "895626474447",
-      appId: "1:895626474447:web:aedcbddcb530f269da238e"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-    const likePath = 'likes/book';
-    const likeBtn = document.getElementById('like-button');
-    const likeCountSpan = document.getElementById('like-count');
-    const likeKey = 'liked_' + likePath.replace(/\//g, '_');
+<!DOCTYPE html>  <html lang="my">    <head>    
+  <meta charset="UTF-8" />    
+  <meta name="viewport" content="width=device-width, initial-scale=1" />    
+  <title> 📘 စာအုပ် | Salaryatana</title>    
+  <style>    
+    body {    
+      font-family: "Myanmar Text", sans-serif;    
+      background-color: #fff;    
+      color: #d4a017;    
+      margin: 0;    
+      padding: 20px;    
+      padding-bottom: 120px;    
+      transition: background-color 0.3s, color 0.3s;    
+    }    
+    h1 {    
+      position: absolute;    
+      top: 15px;    
+      left: 20px;    
+      margin: 0;    
+      font-size: 1.5rem;    
+    }    
+    .book-list {    
+      max-width: 700px;    
+      margin: 0 auto;    
+    }    
+    .book-list a {    
+      display: block;    
+      margin: 10px 0;    
+      color: #d4a017;    
+      text-decoration: none;    
+      font-weight: bold;    
+      border: 1px solid #d4a017;    
+      padding: 10px;    
+      border-radius: 8px;    
+      transition: all 0.3s ease;    
+    }    
+    .book-list a:hover {    
+      background-color: #d4a017;    
+      color: #fff;    
+    }    
+    nav {    
+      position: fixed;    
+      bottom: 0;    
+      left: 0;    
+      width: 100%;    
+      background: #fff;    
+      border-top: 1px solid #ccc;    
+      padding: 10px 0;    
+      text-align: center;    
+      z-index: 999;    
+    }    
+    nav a {    
+      margin: 0 10px;    
+      color: #d4a017;    
+      font-weight: bold;    
+      text-decoration: none;    
+    }    
+    nav a:hover {    
+      text-decoration: underline;    
+    }    
+    .dark-toggle {    
+      position: fixed;    
+      top: 15px;    
+      right: 15px;    
+      background: transparent;    
+      border: none;    
+      border-radius: 50%;    
+      width: 44px;    
+      height: 44px;    
+      font-size: 24px;    
+      cursor: pointer;    
+      color: #fff;    
+      z-index: 1000;    
+    }    
+    body.dark-mode {    
+      background-color: #121212;    
+      color: #f9d71c;    
+    }    
+    body.dark-mode .book-list a {    
+      border-color: #f9d71c;    
+      color: #f9d71c;    
+    }    
+    body.dark-mode .book-list a:hover {    
+      background-color: #f9d71c;    
+      color: #000;    
+    }    
+    body.dark-mode nav {    
+      background-color: #1f1f1f;    
+      border-top-color: #444;    
+    }    
+    body.dark-mode nav a {    
+      color: #f9d71c;    
+    }    
+    .noti-button {    
+      background: transparent;    
+      border: none;    
+      font-size: 2.2rem;    
+      color: #ffffff;    
+      cursor: pointer;    
+      transition: color 0.3s;    
+      filter: drop-shadow(0 0 1px #000);    
+      margin-top: -5px;    
+    }    
+    .like-box {    
+      position: fixed;    
+      bottom: 240px;    
+      right: 20px;    
+      text-align: center;    
+      z-index: 999;    
+    }    
+    .like-button {    
+      background: none;    
+      border: none;    
+      font-size: 2.2rem;    
+      color: #ffffff;    
+      cursor: pointer;    
+      transition: color 0.3s;    
+      filter: drop-shadow(0 0 1px #000);    
+    }    
+    .like-button.liked {    
+      color: #fe2c55;    
+    }    
+    #like-count {    
+      display: block;    
+      font-size: 0.9rem;    
+      color: #d4a017;    
+      margin-top: 5px;    
+    }  /* ✅ စာအုပ် ခလုတ်အတွက် */    
+#show-book-btn {    
+  position: absolute;    
+  top: 15px;    
+  left: 20px;    
+  font-size: 1rem;    
+  color: #d4a017;    
+  border: none;    
+  background: none;    
+  cursor: pointer;    
+  font-weight: bold;    
+}    #book-image {
+display: none;
+margin-top: 70px;
+max-width: 100%;
+height: auto;
+}
 
-    function hasUserLiked() {
-      return localStorage.getItem(likeKey) === 'true';
-    }
-    function setUserLiked() {
-      localStorage.setItem(likeKey, 'true');
-    }
-    function unsetUserLiked() {
-      localStorage.removeItem(likeKey);
-    }
-    function formatCount(num) {
-      if (num < 1000) return num.toString();
-      const units = ['K', 'M', 'B', 'T'];
-      let unitIndex = -1;
-      let n = num;
-      while (n >= 1000 && unitIndex < units.length - 1) {
-        n /= 1000;
-        unitIndex++;
-      }
-      return n.toFixed(1).replace(/\.0$/, '') + units[unitIndex];
-    }
-    function updateUI(count) {
-      likeCountSpan.textContent = formatCount(count);
-      if (hasUserLiked()) {
-        likeBtn.classList.add('liked');
-      } else {
-        likeBtn.classList.remove('liked');
-      }
-    }
-    function loadLikes() {
-      db.ref(likePath).once('value').then(snapshot => {
-        const count = snapshot.val() || 0;
-        updateUI(count);
-      });
-    }
-    function toggleLike() {
-      const ref = db.ref(likePath);
-      if (hasUserLiked()) {
-        ref.transaction(current => (current || 1) - 1, (err, ok, snap) => {
-          if (ok) {
-            updateUI(snap.val());
-            unsetUserLiked();
-          }
-        });
-      } else {
-        ref.transaction(current => (current || 0) + 1, (err, ok, snap) => {
-          if (ok) {
-            updateUI(snap.val());
-            setUserLiked();
-          }
-        });
-      }
-    }
-    likeBtn.addEventListener('click', toggleLike);
-    window.addEventListener('DOMContentLoaded', loadLikes);
-  </script>  <script>
-    function toggleDarkMode() {
-      const body = document.body;
-      const btn = document.getElementById("darkToggleBtn");
-      body.classList.toggle("dark-mode");
-      if (body.classList.contains("dark-mode")) {
-        btn.textContent = "☀️";
-        localStorage.setItem("darkMode", "enabled");
-      } else {
-        btn.textContent = "🌙";
-        localStorage.setItem("darkMode", "disabled");
-      }
+  </style>    
+</head>    
+<body>    
+  <button onclick="toggleDarkMode()" class="dark-toggle" id="darkToggleBtn">🌙</button>    
+  <!-- ✅ စာအုပ် ခလုတ် -->    
+  <button id="show-book-btn" onclick="toggleBook()">📘 စာအုပ်</button>    <!-- ✅ စာအုပ် ပုံ -->    <div style="text-align: center;">    
+    <img id="book-image" src="https://salaryatana.netlify.app/image/bookcover.jpg" alt="Book Cover">    
+  </div>    <h1></h1>    
+  <div class="book-list">    
+    <!-- ဖျက်လိုက်တဲ့အတွက် ဒီမှာဘာမှမရှိတော့ပါ -->    
+  </div>    
+  <div class="like-box">    
+    <button class="like-button" id="like-button">💛</button>    
+    <span id="like-count">0</span>    
+    <br />    
+    <button onclick="alert('like အသဲ ပေးချင်ရင် VPN သုံးပြီး ပေးပါ')" class="noti-button">🔔</button>    
+  </div>    
+  <nav>    
+    <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>    
+    <a href="book.html">📘 စာအုပ်</a>    
+    <a href="chat-json.html">🤖 မေးခွန်းမေး</a>    
+    <a href="history.html">🕘 မှတ်တမ်း</a>    
+    <a href="message.html">✉️ စာပို့ရန်</a>    
+    <a href="about.html">ℹ️ အကြောင်း</a>    
+  </nav>    <!-- Firebase -->    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>    <script>    
+    const firebaseConfig = {    
+      apiKey: "AIzaSyA4A1nYZ4oaGbdkl2ZpNUyMu7nn7GE2QEY",    
+      authDomain: "salaryatana.firebaseapp.com",    
+      databaseURL: "https://salaryatana-8b9f5-default-rtdb.firebaseio.com",    
+      projectId: "salaryatana",    
+      storageBucket: "salaryatana.appspot.com",    
+      messagingSenderId: "895626474447",    
+      appId: "1:895626474447:web:aedcbddcb530f269da238e"    
+    };    
+    firebase.initializeApp(firebaseConfig);    
+    const db = firebase.database();    
+    const likePath = 'likes/book';    
+    const likeBtn = document.getElementById('like-button');    
+    const likeCountSpan = document.getElementById('like-count');    
+    const likeKey = 'liked_' + likePath.replace(/\//g, '_');    function hasUserLiked() {    
+  return localStorage.getItem(likeKey) === 'true';    
+}    
+function setUserLiked() {    
+  localStorage.setItem(likeKey, 'true');    
+}    
+function unsetUserLiked() {    
+  localStorage.removeItem(likeKey);    
+}    
+function formatCount(num) {    
+  if (num < 1000) return num.toString();    
+  const units = ['K', 'M', 'B', 'T'];    
+  let unitIndex = -1;    
+  let n = num;    
+  while (n >= 1000 && unitIndex < units.length - 1) {    
+    n /= 1000;    
+    unitIndex++;    
+  }    
+  return n.toFixed(1).replace(/\.0$/, '') + units[unitIndex];    
+}    
+function updateUI(count) {    
+  likeCountSpan.textContent = formatCount(count);    
+  if (hasUserLiked()) {    
+    likeBtn.classList.add('liked');    
+  } else {    
+    likeBtn.classList.remove('liked');    
+  }    
+}    
+function loadLikes() {    
+  db.ref(likePath).once('value').then(snapshot => {    
+    const count = snapshot.val() || 0;    
+    updateUI(count);    
+  });    
+}    
+function toggleLike() {    
+  const ref = db.ref(likePath);    
+  if (hasUserLiked()) {    
+    ref.transaction(current => (current || 1) - 1, (err, ok, snap) => {    
+      if (ok) {    
+        updateUI(snap.val());    
+        unsetUserLiked();    
+      }    
+    });    
+  } else {    
+    ref.transaction(current => (current || 0) + 1, (err, ok, snap) => {    
+      if (ok) {    
+        updateUI(snap.val());    
+        setUserLiked();    
+      }    
+    });    
+  }    
+}    
+likeBtn.addEventListener('click', toggleLike);    
+window.addEventListener('DOMContentLoaded', loadLikes);
+
+</script>    <!-- Dark Mode Script -->    <script>
+function toggleDarkMode() {
+const body = document.body;
+const btn = document.getElementById("darkToggleBtn");
+body.classList.toggle("dark-mode");
+
+if (body.classList.contains("dark-mode")) {    
+    btn.textContent = "☀️";    
+    localStorage.setItem("darkMode", "enabled");    
+  } else {    
+    btn.textContent = "🌙";    
+    localStorage.setItem("darkMode", "disabled");    
+  }    
+}    
+window.addEventListener("DOMContentLoaded", () => {    
+  const darkModeSetting = localStorage.getItem("darkMode");    
+  const body = document.body;    
+  const btn = document.getElementById("darkToggleBtn");    
+  if (darkModeSetting === "enabled") {    
+    body.classList.add("dark-mode");    
+    btn.textContent = "☀️";    
+  } else {    
+    btn.textContent = "🌙";    
+  }    
+});    
+
+// ✅ Show/hide book image    
+function toggleBook() {    
+  const img = document.getElementById("book-image");    
+  img.style.display = img.style.display === "none" ? "block" : "none";    
+}
+
+</script>  </body>
+
+</html>  ဒါက ငါ့ရဲ့ အခု သုံးနေတဲ့ book codeပါ  အထားအသိုတွေကို လုံးဝမပြောင်းလဲပဲ
+
+စာတွေကိုလဲ လုံးဝမပြောင်းလဲပဲ
+
+လုံးဝမူရင်းပုံစံ မပျက်စေပဲနဲ့
+
+Like ခလုပ်ကိုsalaryatana.netlify.app ရဲ့ link နဲ့ like လုပ်လို့ရအောင် လုပ်ပေးပါ(မင်း ငါ့ကိုvpn မလိုပဲ  ဓာတ်ပုံ ကို ကြည့်လို့ ရအောင် netlify link နဲ့လုပ်သလိုပုံစံမျိုး)
+
+ထည့်သွင်းတဲ့ ကုဒ် အသစ်ရေးပြီး အစအဆုံးငါ့ကို ပြန်ပို့ပေးပါ
+
+ထည့်တာက လွဲပြီး မင်းစိတ်ကြိုက် စာလုံးအပိုတွေ ထည့်တာကို လုံးဝ လုံးဝ မလုပ်ပါနဲ့
+
