@@ -1,53 +1,41 @@
-<!DOCTYPE html>  
-<html lang="my">  
-<head>  
-  <meta charset="UTF-8" />  
-  <title>🕘 မှတ်တမ်း | salaryatana</title>  
-  <meta name="viewport" content="width=device-width, initial-scale=1" />  
-  <meta name="description" content="Salaryatana ၏ မှတ်တမ်းအကြောင်းအရာ" />  
-  <meta name="keywords" content="Salaryatana, မှတ်တမ်း, history, dhamma, mindfulness" />  
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🗂️မှတ်တမ်း</title>
 
-  <!-- ✅ External CSS -->
-  <link rel="stylesheet" href="theme-darkmode.css" />  
+  <!-- ✅ Dark Mode CSS & JS -->
+  <link rel="stylesheet" href="theme-darkmode.css" />
+  <script src="theme-darkmode.js" defer></script>
 
-  <style>  
-    body {  
-      font-family: "Noto Sans Myanmar", sans-serif;  
-      background-color: #f9f9f9;  
-      color: #333;  
-      padding: 1rem;  
-      max-width: 700px;  
-      margin: auto;  
-      padding-bottom: 120px; /* nav space */
-      transition: background-color 0.3s, color 0.3s;  
-    }  
-
-    h1 {  
-      text-align: center;  
-      font-size: 2rem;  
-      color: #d4a017;  
-      margin-bottom: 0.5rem;  
-    }  
-
-    p.subtitle {  
-      text-align: center;  
-      font-size: 1rem;  
-      color: #d4a017;  
-      margin-bottom: 1.5rem;  
-    }  
-
-    /* ✅ Dark Mode */
-    body.dark {  
-      background-color: #1e1e1e;  
-      color: #ddd;  
-    }  
-    body.dark h1,  
-    body.dark p.subtitle {  
-      color: #f5c34d;  
-    }  
-
-    /* ✅ Category Bar - Fixed Bottom Style like index */
-    .category-bar {
+  <style>
+    body {
+      font-family: "Myanmar Text", sans-serif;
+      background-color: #fff;
+      color: #d4a017;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      padding-bottom: 120px; /* nav/footer space */
+    }
+    h1 {
+      margin-top: 10px;
+      font-size: 2rem;
+    }
+    p {
+      margin: 10px 0;
+    }
+    a {
+      color: #d4a017;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    nav {
       position: fixed;
       bottom: 0;
       left: 0;
@@ -55,25 +43,16 @@
       background: #fff;
       border-top: 1px solid #ccc;
       padding: 10px 0;
-      text-align: center;
       z-index: 999;
     }
-    .category-bar a {
+    nav a {
       margin: 0 10px;
+      color: #d4a017;
       font-weight: bold;
-      text-decoration: none;
     }
-    .category-bar a:hover {
+    nav a:hover {
       text-decoration: underline;
     }
-
-    /* ✅ Dark Mode for Category Bar */
-    body.dark .category-bar {
-      background: #1e1e1e;
-      border-top: 1px solid #444;
-    }
-
-    /* ✅ Toggle Button */
     .dark-toggle {
       position: fixed;
       top: 10px;
@@ -84,26 +63,17 @@
       cursor: pointer;
       color: #d4a017;
     }
-    body.dark .dark-toggle {
-      color: #f5c34d;
-    }
-  </style>  
-</head>  
+  </style>
+</head>
+<body>
 
-<body>  
+  <!-- ✅ Dark Mode Toggle Button -->
+  <button onclick="toggleDarkMode()" class="dark-toggle">🌙</button>
 
-  <!-- ✅ Dark Mode Toggle Button -->  
-  <button onclick="toggleDarkMode()" class="dark-toggle">🌙☀️</button>  
+  <h1>🗂️မှတ်တမ်း</h1>
+  <p>ဒီနေရာမှာ မင်းရဲ့အဖွဲ့အစည်း၊ မင်းကိုယ်တိုင်၊ ရည်ရွယ်ချက်တွေအကြောင်းရေးနိုင်ပါတယ်။</p>
 
-  <h1>🕘 Salaryatana မှတ်တမ်း</h1>  
-  <p class="subtitle">သင်တင်ထားတဲ့အကြောင်းအရာများ သမိုင်းမှတ်တမ်းအဖြစ်</p>  
-
-  <p>
-    ဒီနေရာမှာ သင်ဖော်ပြခဲ့တဲ့ စာအုပ်ဖတ်မှု၊ မေးခွန်းမေးမှု၊ တရားနားထောင်မှု စတာတွေမှတ်တမ်းအဖြစ် ထည့်သွင်းပြသနိုင်ပါတယ်။
-  </p>
-
-  <!-- ✅ Fixed Bottom Category Bar -->  
- <nav>
+   <nav>
     <a href="index.html">🏠 ပင်မစာမျက်နှာ</a>
     <a href="book.html">📘 စာအုပ်</a>
     <a href="history.html">🕘 မှတ်တမ်း</a>
@@ -112,6 +82,5 @@
     <a href="chat-json.html">❗ ပြုပြင်စဲ</a>
   </nav>
 
-  <script src="theme-darkmode.js"></script>  
-</body>  
+</body>
 </html>
