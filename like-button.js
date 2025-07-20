@@ -4,7 +4,55 @@ const firebaseConfig = {
   authDomain: "salaryatana.firebaseapp.com",
   databaseURL: "https://salaryatana-8b9f5-default-rtdb.firebaseio.com",
   projectId: "salaryatana",
-  storageBucket: "salaryatana.appspot.com",
+  const likeBtn = document.getElementById('like-button');
+const likeCountSpan = document.getElementById('like-count');
+const likePath = 'likes/' + location.pathname.replace(/\W+/g, '_');
+const likeKey = 'liked_' + likePath;
+
+function updateUI(count) {
+  likeCountSpan.textContent = count;
+  if (hasUserLiked()) likeBtn.classList.add('liked');
+  else likeBtn.classList.remove('liked');
+}
+
+function hasUserLiked() {
+  return localStorage.getItem(likeKey) === 'true';
+}
+function setUserLiked() {
+  localStorage.setItem(likeKey, 'true');
+}
+function unsetUserLiked() {
+  localStorage.removeItem(likeKey);
+}
+
+function toggleLike() {
+  const ref = db.ref(likePath);
+  if (hasUserLiked()) {
+    ref.transaction(c => (c || 1) - 1, (_, ok, snap) => {
+      if (ok) {
+        unsetUserLiked();
+        updateUI(snap.val());
+      }
+    });
+  } else {
+    ref.transaction(c => (c || 0) + 1, (_, ok, snap) => {
+      if (ok) {
+        setUserLiked();
+        updateUI(snap.val());
+      }
+    });
+  }
+}
+
+function loadLikes() {
+  db.ref(likePath).on('value', snap => {
+    const count = snap.val() || 0;
+    updateUI(count);
+  });
+}
+
+likeBtn.addEventListener('click', toggleLike);
+window.addEventListener('DOMContentLoaded', loadLikes);: "salaryatana.appspot.com",
   messagingSenderId: "895626474447",
   appId: "1:895626474447:web:aedcbddcb530f269da238e"
 };
