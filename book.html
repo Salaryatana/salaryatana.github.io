@@ -128,8 +128,6 @@
       color: #d4a017;
       margin-top: 5px;
     }
-
-    /* ✅ စာအုပ် ခလုတ်အတွက် */
     #show-book-btn {
       position: absolute;
       top: 15px;
@@ -141,7 +139,6 @@
       cursor: pointer;
       font-weight: bold;
     }
-
     #book-image {
       display: none;
       margin-top: 70px;
@@ -152,18 +149,12 @@
 </head>
 <body>
   <button onclick="toggleDarkMode()" class="dark-toggle" id="darkToggleBtn">🌙</button>
-  <!-- ✅ စာအုပ် ခလုတ် -->
   <button id="show-book-btn" onclick="toggleBook()">📘 စာအုပ်</button>
-
-  <!-- ✅ စာအုပ် ပုံ -->
   <div style="text-align: center;">
     <img id="book-image" src="https://salaryatana.netlify.app/image/bookcover.jpg" alt="Book Cover">
   </div>
-
   <h1></h1>
-  <div class="book-list">
-    <!-- ဖျက်လိုက်တဲ့အတွက် ဒီမှာဘာမှမရှိတော့ပါ -->
-  </div>
+  <div class="book-list"></div>
   <div class="like-box">
     <button class="like-button" id="like-button">💛</button>
     <span id="like-count">0</span>
@@ -186,7 +177,7 @@
     const firebaseConfig = {
       apiKey: "AIzaSyA4A1nYZ4oaGbdkl2ZpNUyMu7nn7GE2QEY",
       authDomain: "salaryatana.firebaseapp.com",
-      databaseURL: "https://salaryatana-8b9f5-default-rtdb.firebaseio.com",
+      databaseURL: "https://salaryatana.firebaseio.com", // ✅ Netlify မှာ VPN မလိုအောင် ပြင်ထား
       projectId: "salaryatana",
       storageBucket: "salaryatana.appspot.com",
       messagingSenderId: "895626474447",
@@ -261,7 +252,6 @@
       const body = document.body;
       const btn = document.getElementById("darkToggleBtn");
       body.classList.toggle("dark-mode");
-
       if (body.classList.contains("dark-mode")) {
         btn.textContent = "☀️";
         localStorage.setItem("darkMode", "enabled");
@@ -282,7 +272,6 @@
       }
     });
 
-    // ✅ Show/hide book image
     function toggleBook() {
       const img = document.getElementById("book-image");
       img.style.display = img.style.display === "none" ? "block" : "none";
